@@ -45,3 +45,8 @@
 
 # IDE files
 **/.vscode/
+
+
+# Personal files
+user_certs
+init_env.sh

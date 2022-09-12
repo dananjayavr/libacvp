@@ -10,6 +10,10 @@
       The ACVP specification can be found at https://github.com/usnistgov/ACVP
 ```
 
+## Forked project to integrate CycloneCRYPTO, instead of OpenSSL.
+
+---
+
 ## License
 Libacvp is licensed under the Apache License 2.0, which means that
 you are free to get and use it for commercial and non-commercial
