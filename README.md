@@ -9,8 +9,56 @@
            A library that implements the client-side of the ACVP protocol.
       The ACVP specification can be found at https://github.com/usnistgov/ACVP
 ```
-
+---
 ## Forked project to integrate CycloneCRYPTO, instead of OpenSSL.
+
+### Installing libacvp on a fresh Linux machine.
+
+ - ` $ ./configure --with-ssl-dir=/usr/include/openssl --with-libcurl-dir=/usr/include/x86_64-linux-gnu/curl/` 
+ - ` $ make clean` 
+ - ` $ make -j$(nproc)` 
+ - ` sudo make install` 
+
+Note : ` dpkg -L <package name>` , to locate a library install using apt
+
+### Building the test app bundled with libacvp
+
+ - ` $ ./configure --with-ssl-dir=/usr/include/openssl --with-libcurl-dir=/usr/include/x86_64-linux-gnu/curl/ --disable-lib --with-libacvp-dir=/usr/local/acvp` 
+ - ` $ cd app/` 
+ - ` $ make clean; make` 
+
+ ### Running the previously built test app
+
+ - ` $ ./acvp_app --help` 
+
+Note: make sure to init environmental variables : ACV_SERVER, ACV_CERT_FILE, ACV_TOTP_SEED, ACV_CA_FILE, ACV_KEY_FILE
+
+### Accessing the ACVP Server
+
+#### cURL :
+
+` curl -v --cacert ../certs/acvp.nist.gov.crt --key ../../keys/acvts_rsa_key.pem --cert ../../keys/access_keys/<my_key>.cer -d  '{{"acvVersion":"1.0"}, {"password":"<my_password>"}}' -H "Content-Type: application/json" https://demo.acvts.nist.gov/acvp/v1/login` 
+
+#### App :
+
+` $ ./acvp_app --aes --vector_req aes_vectors.json : This command will download test vectors for AES algorithm family.` 
+
+### Customizing the test app
+
+After having updated the app/Makefile.am, run ` autoreconf --install`  from top level (outside app/) directory. 
+
+Make sure the custom files are correctly added in the generated Makefile. 
+For more info: 
+https://stackoverflow.com/questions/38913681/add-source-to-an-existing-automake-program
+
+
+` source init_env.sh` : before running these commands for the first time.
+
+` ./reconf_make.sh`   : after each modification 
+
+` ./acvp_app --hash --vector_req hash_vectors.json`  : request HASH vectors and save to file
+
+` ./acvp_app --hash --vector_req hash_vectors.json --vector_rsp hash_vectors_response.json` : process downloaded vectors and save response to file
 
 ---
 

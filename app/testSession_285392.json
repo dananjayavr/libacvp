@@ -1,0 +1,166 @@
+[ {
+    "url": "\/acvp\/v1\/testSessions\/285392",
+    "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0c0lkIjoiMjg1MzkyIiwidnNJZCI6IlsxMTQwMTE1LDExNDAxMTYsMTE0MDExNywxMTQwMTE4LDExNDAxMTksMTE0MDEyMCwxMTQwMTIxLDExNDAxMjIsMTE0MDEyMywxMTQwMTI0LDExNDAxMjUsMTE0MDEyNiwxMTQwMTI3XSIsInN1YiI6IkU9ZGFuYW5qYXlhQGN5bmV0aXMtZW1iZWRkZWQuY29tLCBDTj13d3cuY3luZXRpcy1lbWJlZGRlZC5jb20sIE9VPUlULCBPPUN5bmV0aXMgRW1iZWRkZWQsIEw9UGFyaXMsIFM9UGFyaXMsIEM9RlIiLCJuYmYiOjE2NjI5ODU1MzksImV4cCI6MTY2Mjk4NzMzOSwiaWF0IjoxNjYyOTg1NTM5LCJpc3MiOiJOSVNUIEFDVlAgREVNTyJ9.X1QgFIhMY95Z9FvPqifyrgtVhRndWMa6GhIWVeuvGqE",
+    "isSample": false,
+    "registration": {
+        "algorithms": [
+            {
+                "algorithm": "SHA-1",
+                "revision": "1.0",
+                "messageLength": [
+                    {
+                        "min": 0,
+                        "max": 65536,
+                        "increment": 8
+                    }
+                ]
+            },
+            {
+                "algorithm": "SHA2-224",
+                "revision": "1.0",
+                "messageLength": [
+                    {
+                        "min": 0,
+                        "max": 65536,
+                        "increment": 8
+                    }
+                ]
+            },
+            {
+                "algorithm": "SHA2-256",
+                "revision": "1.0",
+                "messageLength": [
+                    {
+                        "min": 0,
+                        "max": 65536,
+                        "increment": 8
+                    }
+                ]
+            },
+            {
+                "algorithm": "SHA2-384",
+                "revision": "1.0",
+                "messageLength": [
+                    {
+                        "min": 0,
+                        "max": 65536,
+                        "increment": 8
+                    }
+                ]
+            },
+            {
+                "algorithm": "SHA2-512",
+                "revision": "1.0",
+                "messageLength": [
+                    {
+                        "min": 0,
+                        "max": 65536,
+                        "increment": 8
+                    }
+                ]
+            },
+            {
+                "algorithm": "SHA2-512\/224",
+                "revision": "1.0",
+                "messageLength": [
+                    {
+                        "min": 0,
+                        "max": 65536,
+                        "increment": 8
+                    }
+                ]
+            },
+            {
+                "algorithm": "SHA2-512\/256",
+                "revision": "1.0",
+                "messageLength": [
+                    {
+                        "min": 0,
+                        "max": 65536,
+                        "increment": 8
+                    }
+                ]
+            },
+            {
+                "algorithm": "SHA3-224",
+                "revision": "2.0",
+                "inBit": false,
+                "inEmpty": true,
+                "messageLength": [
+                    {
+                        "min": 0,
+                        "max": 65536,
+                        "increment": 8
+                    }
+                ]
+            },
+            {
+                "algorithm": "SHA3-256",
+                "revision": "2.0",
+                "inBit": false,
+                "inEmpty": true,
+                "messageLength": [
+                    {
+                        "min": 0,
+                        "max": 65536,
+                        "increment": 8
+                    }
+                ]
+            },
+            {
+                "algorithm": "SHA3-384",
+                "revision": "2.0",
+                "inBit": false,
+                "inEmpty": true,
+                "messageLength": [
+                    {
+                        "min": 0,
+                        "max": 65536,
+                        "increment": 8
+                    }
+                ]
+            },
+            {
+                "algorithm": "SHA3-512",
+                "revision": "2.0",
+                "inBit": false,
+                "inEmpty": true,
+                "messageLength": [
+                    {
+                        "min": 0,
+                        "max": 65536,
+                        "increment": 8
+                    }
+                ]
+            },
+            {
+                "algorithm": "SHAKE-128",
+                "revision": "1.0",
+                "inBit": false,
+                "inEmpty": true,
+                "outBit": false,
+                "outputLen": [
+                    {
+                        "min": 16,
+                        "max": 1024,
+                        "increment": 8
+                    }
+                ]
+            },
+            {
+                "algorithm": "SHAKE-256",
+                "revision": "1.0",
+                "inBit": false,
+                "inEmpty": true,
+                "outBit": false,
+                "outputLen": [
+                    {
+                        "min": 16,
+                        "max": 1024,
+                        "increment": 8
+                    }
+                ]
+            }
+        ]
+    }
+} ]

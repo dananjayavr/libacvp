@@ -28,16 +28,16 @@ int app_sha_handler(ACVP_TEST_CASE *test_case)
 {
     ACVP_HASH_TC *tc;
 
-    const HashAlgo *hashAlgo;         // for CycloneCRYPTO
-    static HashContext context;       // for CycloneCRYPTO
-    static ShakeContext shakeContext; // for CycloneCRYPTO
+    const HashAlgo *hashAlgo;  // for CycloneCRYPTO
+    HashContext context;       // for CycloneCRYPTO
+    ShakeContext shakeContext; // for CycloneCRYPTO
 
     uint8_t *shakeDigest;
 
     /* assume fail */
     int rc = 1;
     int sha3 = 0, shake = 0;
-    int shake128 = 0, shake256 = 0;
+    int shake128 = 0;
 
     ACVP_SUB_HASH alg;
 
@@ -114,7 +114,6 @@ int app_sha_handler(ACVP_TEST_CASE *test_case)
         break;
     case ACVP_SUB_HASH_SHAKE_256:
         shake = 1;
-        shake256 = 0;
         break;
 
     default:
