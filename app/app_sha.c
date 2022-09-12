@@ -20,6 +20,7 @@
 #include "crypto_config.h"
 #include "hash/hash_algorithms.h"
 #include "xof/shake.h"
+#include "error.h"
 #include "debug.h"
 
 #define TRACE_LEVEL TRACE_LEVEL_DEBUG
@@ -27,12 +28,13 @@
 int app_sha_handler(ACVP_TEST_CASE *test_case)
 {
     ACVP_HASH_TC *tc;
+    error_t status = NO_ERROR;
 
     const HashAlgo *hashAlgo;  // for CycloneCRYPTO
     HashContext context;       // for CycloneCRYPTO
     ShakeContext shakeContext; // for CycloneCRYPTO
 
-    uint8_t *shakeDigest;
+    uint8_t *shakeDigest = NULL;
 
     /* assume fail */
     int rc = 1;
@@ -40,6 +42,7 @@ int app_sha_handler(ACVP_TEST_CASE *test_case)
     int shake128 = 0;
 
     ACVP_SUB_HASH alg;
+    hashAlgo = NULL;
 
     if (!test_case)
     {
@@ -155,22 +158,92 @@ int app_sha_handler(ACVP_TEST_CASE *test_case)
             (tc->test_type == ACVP_HASH_TEST_TYPE_MCT && shake))
         {
 #if 0
-            if(shake128) {
-                shakeInit(&shakeContext, 128);
-            } else {
-                shakeInit(&shakeContext, 256);
+            // shakeInit+shakeAbsorb+shakeFinal+shakeSqueeze
+            if (shake128)
+            {
+                status = shakeInit(&shakeContext, 128);
+            }
+            else
+            {
+                status = shakeInit(&shakeContext, 256);
             }
 
             shakeAbsorb(&shakeContext, tc->msg, tc->msg_len);
             shakeFinal(&shakeContext);
             shakeSqueeze(&shakeContext, tc->md, tc->xof_len);
-#endif
-            if(shake128) {
-                shakeCompute(128, tc->msg, tc->msg_len, tc->md, tc->xof_len);
-            } else {
-                shakeCompute(256, tc->msg, tc->msg_len, tc->md, tc->xof_len);
+
+            if (status != NO_ERROR)
+            {
+                TRACE_INFO("\n\nSHAKE Error: %d\n\n", status);
             }
+#else
+            if (shake128)
+            {
+                status = shakeCompute(128, tc->msg, tc->msg_len, tc->md, tc->xof_len);
+            }
+            else
+            {
+                status = shakeCompute(256, tc->msg, tc->msg_len, tc->md, tc->xof_len);
+            }
+#endif
             tc->md_len = tc->xof_len;
+            rc = 0;
+
+            goto end;
+        }
+        else if ((tc->test_type == ACVP_HASH_TEST_TYPE_AFT && shake))
+        {
+#if 1
+            // shakeInit+shakeAbsorb+shakeFinal+shakeSqueeze
+            if (shake128)
+            {
+                status = shakeInit(&shakeContext, 128);
+
+                if (status != NO_ERROR)
+                {
+                    TRACE_INFO("\n\nSHAKE Error: %d\n\n", status);
+                }
+
+                shakeAbsorb(&shakeContext, tc->msg, tc->msg_len);
+                shakeFinal(&shakeContext);
+                shakeSqueeze(&shakeContext, tc->md, 16);
+
+                tc->md_len = 16;
+            }
+            else
+            {
+                status = shakeInit(&shakeContext, 256);
+
+                if (status != NO_ERROR)
+                {
+                    TRACE_INFO("\n\nSHAKE Error: %d\n\n", status);
+                }
+                shakeAbsorb(&shakeContext, tc->msg, tc->msg_len);
+                shakeFinal(&shakeContext);
+                shakeSqueeze(&shakeContext, tc->md, 32);
+
+                tc->md_len = 32;
+            }
+
+#else
+            if (shake128)
+            {
+                status = shakeCompute(128, tc->msg, tc->msg_len, shakeDigest, 128);
+                tc->md_len = 128;
+            }
+            else
+            {
+                status = shakeCompute(256, tc->msg, tc->msg_len, shakeDigest, 128);
+                tc->md_len = 256;
+            }
+#endif
+            /* printf("----\n");
+            for (int i = 0; i < tc->xof_len; i++)
+            {
+                printf("%02X", shakeDigest[i]);
+            }
+            printf("\n----\n"); */
+
             rc = 0;
 
             goto end;

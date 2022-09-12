@@ -35,11 +35,11 @@ Note: make sure to init environmental variables : ACV_SERVER, ACV_CERT_FILE, ACV
 
 ### Accessing the ACVP Server
 
-#### cURL :
+#### cURL
 
 ` curl -v --cacert ../certs/acvp.nist.gov.crt --key ../../keys/acvts_rsa_key.pem --cert ../../keys/access_keys/<my_key>.cer -d  '{{"acvVersion":"1.0"}, {"password":"<my_password>"}}' -H "Content-Type: application/json" https://demo.acvts.nist.gov/acvp/v1/login` 
 
-#### App :
+#### App
 
 ` $ ./acvp_app --aes --vector_req aes_vectors.json : This command will download test vectors for AES algorithm family.` 
 
@@ -58,7 +58,7 @@ https://stackoverflow.com/questions/38913681/add-source-to-an-existing-automake-
 
 ` ./acvp_app --hash --vector_req hash_vectors.json`  : request HASH vectors and save to file
 
-` ./acvp_app --hash --vector_req hash_vectors.json --vector_rsp hash_vectors_response.json` : process downloaded vectors and save response to file
+` ./acvp_app --hash -r ../test_vectors/hash_vectors.json -p ../test_vectors/hash_vectors_responses.json` : process downloaded vectors and save response to file
 
 ---
 

@@ -28,6 +28,7 @@ tmp_sources = app_main.c \
               ../crypto/cyclone_crypto/xof/shake.c \
               ../crypto/common/cpu_endian.c \
               ../crypto/common/os_port_posix.c \
+              ../crypto/common/debug.c \
               app_fips_lcl.h \
               app_fips_init_lcl.h \
               app_lcl.h \

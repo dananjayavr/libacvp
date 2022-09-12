@@ -50,3 +50,6 @@
 # Personal files
 user_certs
 init_env.sh
+doc/html
+testSession_*.json
+test_vectors/*

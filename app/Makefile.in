@@ -161,8 +161,8 @@ am__libacvp_app_la_SOURCES_DIST = app_main.c app_aes.c app_cli.c \
 	../crypto/cyclone_crypto/xof/keccak.c \
 	../crypto/cyclone_crypto/xof/shake.c \
 	../crypto/common/cpu_endian.c ../crypto/common/os_port_posix.c \
-	app_fips_lcl.h app_fips_init_lcl.h app_lcl.h \
-	../crypto/os_port_config.h ../crypto/crypto_config.h \
+	../crypto/common/debug.c app_fips_lcl.h app_fips_init_lcl.h \
+	app_lcl.h ../crypto/os_port_config.h ../crypto/crypto_config.h \
 	../crypto/core/crypto.h ketopt.h
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = app_main.lo app_aes.lo app_cli.lo app_cmac.lo \
@@ -182,7 +182,7 @@ am__objects_1 = app_main.lo app_aes.lo app_cli.lo app_cmac.lo \
 	../crypto/cyclone_crypto/xof/keccak.lo \
 	../crypto/cyclone_crypto/xof/shake.lo \
 	../crypto/common/cpu_endian.lo \
-	../crypto/common/os_port_posix.lo
+	../crypto/common/os_port_posix.lo ../crypto/common/debug.lo
 @BUILD_APP_AS_LIB_TRUE@am_libacvp_app_la_OBJECTS = $(am__objects_1)
 libacvp_app_la_OBJECTS = $(am_libacvp_app_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -207,8 +207,8 @@ am__acvp_app_SOURCES_DIST = app_main.c app_aes.c app_cli.c app_cmac.c \
 	../crypto/cyclone_crypto/xof/keccak.c \
 	../crypto/cyclone_crypto/xof/shake.c \
 	../crypto/common/cpu_endian.c ../crypto/common/os_port_posix.c \
-	app_fips_lcl.h app_fips_init_lcl.h app_lcl.h \
-	../crypto/os_port_config.h ../crypto/crypto_config.h \
+	../crypto/common/debug.c app_fips_lcl.h app_fips_init_lcl.h \
+	app_lcl.h ../crypto/os_port_config.h ../crypto/crypto_config.h \
 	../crypto/core/crypto.h ketopt.h
 am__objects_2 = acvp_app-app_main.$(OBJEXT) acvp_app-app_aes.$(OBJEXT) \
 	acvp_app-app_cli.$(OBJEXT) acvp_app-app_cmac.$(OBJEXT) \
@@ -232,7 +232,8 @@ am__objects_2 = acvp_app-app_main.$(OBJEXT) acvp_app-app_aes.$(OBJEXT) \
 	../crypto/cyclone_crypto/xof/acvp_app-keccak.$(OBJEXT) \
 	../crypto/cyclone_crypto/xof/acvp_app-shake.$(OBJEXT) \
 	../crypto/common/acvp_app-cpu_endian.$(OBJEXT) \
-	../crypto/common/acvp_app-os_port_posix.$(OBJEXT)
+	../crypto/common/acvp_app-os_port_posix.$(OBJEXT) \
+	../crypto/common/acvp_app-debug.$(OBJEXT)
 @BUILD_APP_AS_LIB_FALSE@am_acvp_app_OBJECTS = $(am__objects_2)
 acvp_app_OBJECTS = $(am_acvp_app_OBJECTS)
 @BUILD_APP_AS_LIB_FALSE@@USE_FOM_TRUE@acvp_app_DEPENDENCIES = $(FOM_OBJ_DIR)/fipscanister.o
@@ -256,8 +257,10 @@ depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade =  \
 	../crypto/common/$(DEPDIR)/acvp_app-cpu_endian.Po \
+	../crypto/common/$(DEPDIR)/acvp_app-debug.Po \
 	../crypto/common/$(DEPDIR)/acvp_app-os_port_posix.Po \
 	../crypto/common/$(DEPDIR)/cpu_endian.Plo \
+	../crypto/common/$(DEPDIR)/debug.Plo \
 	../crypto/common/$(DEPDIR)/os_port_posix.Plo \
 	../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha1.Po \
 	../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha224.Po \
@@ -521,6 +524,7 @@ tmp_sources = app_main.c \
               ../crypto/cyclone_crypto/xof/shake.c \
               ../crypto/common/cpu_endian.c \
               ../crypto/common/os_port_posix.c \
+              ../crypto/common/debug.c \
               app_fips_lcl.h \
               app_fips_init_lcl.h \
               app_lcl.h \
@@ -722,6 +726,8 @@ clean-libLTLIBRARIES:
 	../crypto/common/$(DEPDIR)/$(am__dirstamp)
 ../crypto/common/os_port_posix.lo: ../crypto/common/$(am__dirstamp) \
 	../crypto/common/$(DEPDIR)/$(am__dirstamp)
+../crypto/common/debug.lo: ../crypto/common/$(am__dirstamp) \
+	../crypto/common/$(DEPDIR)/$(am__dirstamp)
 
 libacvp_app.la: $(libacvp_app_la_OBJECTS) $(libacvp_app_la_DEPENDENCIES) $(EXTRA_libacvp_app_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) $(am_libacvp_app_la_rpath) $(libacvp_app_la_OBJECTS) $(libacvp_app_la_LIBADD) $(LIBS)
@@ -770,6 +776,9 @@ libacvp_app.la: $(libacvp_app_la_OBJECTS) $(libacvp_app_la_DEPENDENCIES) $(EXTRA
 ../crypto/common/acvp_app-os_port_posix.$(OBJEXT):  \
 	../crypto/common/$(am__dirstamp) \
 	../crypto/common/$(DEPDIR)/$(am__dirstamp)
+../crypto/common/acvp_app-debug.$(OBJEXT):  \
+	../crypto/common/$(am__dirstamp) \
+	../crypto/common/$(DEPDIR)/$(am__dirstamp)
 
 acvp_app$(EXEEXT): $(acvp_app_OBJECTS) $(acvp_app_DEPENDENCIES) $(EXTRA_acvp_app_DEPENDENCIES) 
 	@rm -f acvp_app$(EXEEXT)
@@ -788,8 +797,10 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@../crypto/common/$(DEPDIR)/acvp_app-cpu_endian.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/common/$(DEPDIR)/acvp_app-debug.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../crypto/common/$(DEPDIR)/acvp_app-os_port_posix.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../crypto/common/$(DEPDIR)/cpu_endian.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/common/$(DEPDIR)/debug.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../crypto/common/$(DEPDIR)/os_port_posix.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha1.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha224.Po@am__quote@ # am--include-marker
@@ -1298,6 +1309,20 @@ acvp_app-app_utils.obj: app_utils.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/common/acvp_app-os_port_posix.obj `if test -f '../crypto/common/os_port_posix.c'; then $(CYGPATH_W) '../crypto/common/os_port_posix.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/common/os_port_posix.c'; fi`
 
+../crypto/common/acvp_app-debug.o: ../crypto/common/debug.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/common/acvp_app-debug.o -MD -MP -MF ../crypto/common/$(DEPDIR)/acvp_app-debug.Tpo -c -o ../crypto/common/acvp_app-debug.o `test -f '../crypto/common/debug.c' || echo '$(srcdir)/'`../crypto/common/debug.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/common/$(DEPDIR)/acvp_app-debug.Tpo ../crypto/common/$(DEPDIR)/acvp_app-debug.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/common/debug.c' object='../crypto/common/acvp_app-debug.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/common/acvp_app-debug.o `test -f '../crypto/common/debug.c' || echo '$(srcdir)/'`../crypto/common/debug.c
+
+../crypto/common/acvp_app-debug.obj: ../crypto/common/debug.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/common/acvp_app-debug.obj -MD -MP -MF ../crypto/common/$(DEPDIR)/acvp_app-debug.Tpo -c -o ../crypto/common/acvp_app-debug.obj `if test -f '../crypto/common/debug.c'; then $(CYGPATH_W) '../crypto/common/debug.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/common/debug.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/common/$(DEPDIR)/acvp_app-debug.Tpo ../crypto/common/$(DEPDIR)/acvp_app-debug.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/common/debug.c' object='../crypto/common/acvp_app-debug.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/common/acvp_app-debug.obj `if test -f '../crypto/common/debug.c'; then $(CYGPATH_W) '../crypto/common/debug.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/common/debug.c'; fi`
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
@@ -1466,8 +1491,10 @@ clean-am: clean-binPROGRAMS clean-generic clean-libLTLIBRARIES \
 
 distclean: distclean-am
 		-rm -f ../crypto/common/$(DEPDIR)/acvp_app-cpu_endian.Po
+	-rm -f ../crypto/common/$(DEPDIR)/acvp_app-debug.Po
 	-rm -f ../crypto/common/$(DEPDIR)/acvp_app-os_port_posix.Po
 	-rm -f ../crypto/common/$(DEPDIR)/cpu_endian.Plo
+	-rm -f ../crypto/common/$(DEPDIR)/debug.Plo
 	-rm -f ../crypto/common/$(DEPDIR)/os_port_posix.Plo
 	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha1.Po
 	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha224.Po
@@ -1571,8 +1598,10 @@ installcheck-am:
 
 maintainer-clean: maintainer-clean-am
 		-rm -f ../crypto/common/$(DEPDIR)/acvp_app-cpu_endian.Po
+	-rm -f ../crypto/common/$(DEPDIR)/acvp_app-debug.Po
 	-rm -f ../crypto/common/$(DEPDIR)/acvp_app-os_port_posix.Po
 	-rm -f ../crypto/common/$(DEPDIR)/cpu_endian.Plo
+	-rm -f ../crypto/common/$(DEPDIR)/debug.Plo
 	-rm -f ../crypto/common/$(DEPDIR)/os_port_posix.Plo
 	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha1.Po
 	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha224.Po
