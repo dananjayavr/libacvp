@@ -34,8 +34,6 @@ int app_sha_handler(ACVP_TEST_CASE *test_case)
     HashContext context;       // for CycloneCRYPTO
     ShakeContext shakeContext; // for CycloneCRYPTO
 
-    uint8_t *shakeDigest = NULL;
-
     /* assume fail */
     int rc = 1;
     int sha3 = 0, shake = 0;
@@ -157,26 +155,6 @@ int app_sha_handler(ACVP_TEST_CASE *test_case)
         if (tc->test_type == ACVP_HASH_TEST_TYPE_VOT ||
             (tc->test_type == ACVP_HASH_TEST_TYPE_MCT && shake))
         {
-#if 0
-            // shakeInit+shakeAbsorb+shakeFinal+shakeSqueeze
-            if (shake128)
-            {
-                status = shakeInit(&shakeContext, 128);
-            }
-            else
-            {
-                status = shakeInit(&shakeContext, 256);
-            }
-
-            shakeAbsorb(&shakeContext, tc->msg, tc->msg_len);
-            shakeFinal(&shakeContext);
-            shakeSqueeze(&shakeContext, tc->md, tc->xof_len);
-
-            if (status != NO_ERROR)
-            {
-                TRACE_INFO("\n\nSHAKE Error: %d\n\n", status);
-            }
-#else
             if (shake128)
             {
                 status = shakeCompute(128, tc->msg, tc->msg_len, tc->md, tc->xof_len);
@@ -185,7 +163,7 @@ int app_sha_handler(ACVP_TEST_CASE *test_case)
             {
                 status = shakeCompute(256, tc->msg, tc->msg_len, tc->md, tc->xof_len);
             }
-#endif
+
             tc->md_len = tc->xof_len;
             rc = 0;
 
@@ -193,7 +171,6 @@ int app_sha_handler(ACVP_TEST_CASE *test_case)
         }
         else if ((tc->test_type == ACVP_HASH_TEST_TYPE_AFT && shake))
         {
-#if 1
             // shakeInit+shakeAbsorb+shakeFinal+shakeSqueeze
             if (shake128)
             {
@@ -224,25 +201,6 @@ int app_sha_handler(ACVP_TEST_CASE *test_case)
 
                 tc->md_len = 32;
             }
-
-#else
-            if (shake128)
-            {
-                status = shakeCompute(128, tc->msg, tc->msg_len, shakeDigest, 128);
-                tc->md_len = 128;
-            }
-            else
-            {
-                status = shakeCompute(256, tc->msg, tc->msg_len, shakeDigest, 128);
-                tc->md_len = 256;
-            }
-#endif
-            /* printf("----\n");
-            for (int i = 0; i < tc->xof_len; i++)
-            {
-                printf("%02X", shakeDigest[i]);
-            }
-            printf("\n----\n"); */
 
             rc = 0;
 
