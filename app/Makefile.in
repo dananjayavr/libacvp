@@ -147,12 +147,42 @@ am__DEPENDENCIES_1 =
 am__libacvp_app_la_SOURCES_DIST = app_main.c app_aes.c app_cli.c \
 	app_cmac.c app_des.c app_drbg.c app_dsa.c app_ecdsa.c \
 	app_hmac.c app_kas.c app_kdf.c app_kda.c app_rsa.c app_sha.c \
-	app_utils.c app_fips_lcl.h app_fips_init_lcl.h app_lcl.h \
-	ketopt.h
+	app_utils.c ../crypto/cyclone_crypto/hash/sha256.c \
+	../crypto/cyclone_crypto/hash/sha3_512.c \
+	../crypto/cyclone_crypto/hash/sha224.c \
+	../crypto/cyclone_crypto/hash/sha3_384.c \
+	../crypto/cyclone_crypto/hash/sha3_256.c \
+	../crypto/cyclone_crypto/hash/sha3_224.c \
+	../crypto/cyclone_crypto/hash/sha512.c \
+	../crypto/cyclone_crypto/hash/sha512_224.c \
+	../crypto/cyclone_crypto/hash/sha512_256.c \
+	../crypto/cyclone_crypto/hash/sha384.c \
+	../crypto/cyclone_crypto/hash/sha1.c \
+	../crypto/cyclone_crypto/xof/keccak.c \
+	../crypto/cyclone_crypto/xof/shake.c \
+	../crypto/common/cpu_endian.c ../crypto/common/os_port_posix.c \
+	app_fips_lcl.h app_fips_init_lcl.h app_lcl.h \
+	../crypto/os_port_config.h ../crypto/crypto_config.h \
+	../crypto/core/crypto.h ketopt.h
+am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = app_main.lo app_aes.lo app_cli.lo app_cmac.lo \
 	app_des.lo app_drbg.lo app_dsa.lo app_ecdsa.lo app_hmac.lo \
 	app_kas.lo app_kdf.lo app_kda.lo app_rsa.lo app_sha.lo \
-	app_utils.lo
+	app_utils.lo ../crypto/cyclone_crypto/hash/sha256.lo \
+	../crypto/cyclone_crypto/hash/sha3_512.lo \
+	../crypto/cyclone_crypto/hash/sha224.lo \
+	../crypto/cyclone_crypto/hash/sha3_384.lo \
+	../crypto/cyclone_crypto/hash/sha3_256.lo \
+	../crypto/cyclone_crypto/hash/sha3_224.lo \
+	../crypto/cyclone_crypto/hash/sha512.lo \
+	../crypto/cyclone_crypto/hash/sha512_224.lo \
+	../crypto/cyclone_crypto/hash/sha512_256.lo \
+	../crypto/cyclone_crypto/hash/sha384.lo \
+	../crypto/cyclone_crypto/hash/sha1.lo \
+	../crypto/cyclone_crypto/xof/keccak.lo \
+	../crypto/cyclone_crypto/xof/shake.lo \
+	../crypto/common/cpu_endian.lo \
+	../crypto/common/os_port_posix.lo
 @BUILD_APP_AS_LIB_TRUE@am_libacvp_app_la_OBJECTS = $(am__objects_1)
 libacvp_app_la_OBJECTS = $(am_libacvp_app_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -163,7 +193,23 @@ am__v_lt_1 =
 am__acvp_app_SOURCES_DIST = app_main.c app_aes.c app_cli.c app_cmac.c \
 	app_des.c app_drbg.c app_dsa.c app_ecdsa.c app_hmac.c \
 	app_kas.c app_kdf.c app_kda.c app_rsa.c app_sha.c app_utils.c \
-	app_fips_lcl.h app_fips_init_lcl.h app_lcl.h ketopt.h
+	../crypto/cyclone_crypto/hash/sha256.c \
+	../crypto/cyclone_crypto/hash/sha3_512.c \
+	../crypto/cyclone_crypto/hash/sha224.c \
+	../crypto/cyclone_crypto/hash/sha3_384.c \
+	../crypto/cyclone_crypto/hash/sha3_256.c \
+	../crypto/cyclone_crypto/hash/sha3_224.c \
+	../crypto/cyclone_crypto/hash/sha512.c \
+	../crypto/cyclone_crypto/hash/sha512_224.c \
+	../crypto/cyclone_crypto/hash/sha512_256.c \
+	../crypto/cyclone_crypto/hash/sha384.c \
+	../crypto/cyclone_crypto/hash/sha1.c \
+	../crypto/cyclone_crypto/xof/keccak.c \
+	../crypto/cyclone_crypto/xof/shake.c \
+	../crypto/common/cpu_endian.c ../crypto/common/os_port_posix.c \
+	app_fips_lcl.h app_fips_init_lcl.h app_lcl.h \
+	../crypto/os_port_config.h ../crypto/crypto_config.h \
+	../crypto/core/crypto.h ketopt.h
 am__objects_2 = acvp_app-app_main.$(OBJEXT) acvp_app-app_aes.$(OBJEXT) \
 	acvp_app-app_cli.$(OBJEXT) acvp_app-app_cmac.$(OBJEXT) \
 	acvp_app-app_des.$(OBJEXT) acvp_app-app_drbg.$(OBJEXT) \
@@ -171,7 +217,22 @@ am__objects_2 = acvp_app-app_main.$(OBJEXT) acvp_app-app_aes.$(OBJEXT) \
 	acvp_app-app_hmac.$(OBJEXT) acvp_app-app_kas.$(OBJEXT) \
 	acvp_app-app_kdf.$(OBJEXT) acvp_app-app_kda.$(OBJEXT) \
 	acvp_app-app_rsa.$(OBJEXT) acvp_app-app_sha.$(OBJEXT) \
-	acvp_app-app_utils.$(OBJEXT)
+	acvp_app-app_utils.$(OBJEXT) \
+	../crypto/cyclone_crypto/hash/acvp_app-sha256.$(OBJEXT) \
+	../crypto/cyclone_crypto/hash/acvp_app-sha3_512.$(OBJEXT) \
+	../crypto/cyclone_crypto/hash/acvp_app-sha224.$(OBJEXT) \
+	../crypto/cyclone_crypto/hash/acvp_app-sha3_384.$(OBJEXT) \
+	../crypto/cyclone_crypto/hash/acvp_app-sha3_256.$(OBJEXT) \
+	../crypto/cyclone_crypto/hash/acvp_app-sha3_224.$(OBJEXT) \
+	../crypto/cyclone_crypto/hash/acvp_app-sha512.$(OBJEXT) \
+	../crypto/cyclone_crypto/hash/acvp_app-sha512_224.$(OBJEXT) \
+	../crypto/cyclone_crypto/hash/acvp_app-sha512_256.$(OBJEXT) \
+	../crypto/cyclone_crypto/hash/acvp_app-sha384.$(OBJEXT) \
+	../crypto/cyclone_crypto/hash/acvp_app-sha1.$(OBJEXT) \
+	../crypto/cyclone_crypto/xof/acvp_app-keccak.$(OBJEXT) \
+	../crypto/cyclone_crypto/xof/acvp_app-shake.$(OBJEXT) \
+	../crypto/common/acvp_app-cpu_endian.$(OBJEXT) \
+	../crypto/common/acvp_app-os_port_posix.$(OBJEXT)
 @BUILD_APP_AS_LIB_FALSE@am_acvp_app_OBJECTS = $(am__objects_2)
 acvp_app_OBJECTS = $(am_acvp_app_OBJECTS)
 @BUILD_APP_AS_LIB_FALSE@@USE_FOM_TRUE@acvp_app_DEPENDENCIES = $(FOM_OBJ_DIR)/fipscanister.o
@@ -193,7 +254,38 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/acvp_app-app_aes.Po \
+am__depfiles_remade =  \
+	../crypto/common/$(DEPDIR)/acvp_app-cpu_endian.Po \
+	../crypto/common/$(DEPDIR)/acvp_app-os_port_posix.Po \
+	../crypto/common/$(DEPDIR)/cpu_endian.Plo \
+	../crypto/common/$(DEPDIR)/os_port_posix.Plo \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha1.Po \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha224.Po \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha256.Po \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha384.Po \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_224.Po \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_256.Po \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_384.Po \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_512.Po \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512.Po \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512_224.Po \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512_256.Po \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/sha1.Plo \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/sha224.Plo \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/sha256.Plo \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/sha384.Plo \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/sha3_224.Plo \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/sha3_256.Plo \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/sha3_384.Plo \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/sha3_512.Plo \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/sha512.Plo \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/sha512_224.Plo \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/sha512_256.Plo \
+	../crypto/cyclone_crypto/xof/$(DEPDIR)/acvp_app-keccak.Po \
+	../crypto/cyclone_crypto/xof/$(DEPDIR)/acvp_app-shake.Po \
+	../crypto/cyclone_crypto/xof/$(DEPDIR)/keccak.Plo \
+	../crypto/cyclone_crypto/xof/$(DEPDIR)/shake.Plo \
+	./$(DEPDIR)/acvp_app-app_aes.Po \
 	./$(DEPDIR)/acvp_app-app_cli.Po \
 	./$(DEPDIR)/acvp_app-app_cmac.Po \
 	./$(DEPDIR)/acvp_app-app_des.Po \
@@ -286,6 +378,7 @@ CRITERION_LDFLAGS = @CRITERION_LDFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
@@ -315,8 +408,10 @@ LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
+LT_SYS_LIBRARY_PATH = @LT_SYS_LIBRARY_PATH@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MKDIR_P = @MKDIR_P@
 NM = @NM@
 NMEDIT = @NMEDIT@
@@ -380,7 +475,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -388,6 +482,7 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
+runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -411,14 +506,32 @@ tmp_sources = app_main.c \
               app_rsa.c \
               app_sha.c \
               app_utils.c \
+              ../crypto/cyclone_crypto/hash/sha256.c \
+              ../crypto/cyclone_crypto/hash/sha3_512.c \
+              ../crypto/cyclone_crypto/hash/sha224.c \
+              ../crypto/cyclone_crypto/hash/sha3_384.c \
+              ../crypto/cyclone_crypto/hash/sha3_256.c \
+              ../crypto/cyclone_crypto/hash/sha3_224.c \
+              ../crypto/cyclone_crypto/hash/sha512.c \
+              ../crypto/cyclone_crypto/hash/sha512_224.c \
+              ../crypto/cyclone_crypto/hash/sha512_256.c \
+              ../crypto/cyclone_crypto/hash/sha384.c \
+              ../crypto/cyclone_crypto/hash/sha1.c \
+              ../crypto/cyclone_crypto/xof/keccak.c \
+              ../crypto/cyclone_crypto/xof/shake.c \
+              ../crypto/common/cpu_endian.c \
+              ../crypto/common/os_port_posix.c \
               app_fips_lcl.h \
               app_fips_init_lcl.h \
               app_lcl.h \
+              ../crypto/os_port_config.h \
+              ../crypto/crypto_config.h \
+              ../crypto/core/crypto.h \
               ketopt.h
 
 @BUILD_APP_AS_LIB_FALSE@acvp_app_includedir = $(includedir)/acvp
 @BUILD_APP_AS_LIB_FALSE@acvp_app_SOURCES = ${tmp_sources}
-@BUILD_APP_AS_LIB_FALSE@acvp_app_CFLAGS = -g -fPIE $(LIBACVP_CFLAGS) $(SSL_CFLAGS) $(FOM_CFLAGS) $(SAFEC_CFLAGS)
+@BUILD_APP_AS_LIB_FALSE@acvp_app_CFLAGS = -g -fPIE $(LIBACVP_CFLAGS) $(SSL_CFLAGS) $(FOM_CFLAGS) $(SAFEC_CFLAGS) -I../crypto -I../crypto/common -I../crypto/cyclone_crypto
 @BUILD_APP_AS_LIB_FALSE@acvp_app_LDFLAGS = $(LIBACVP_LDFLAGS) \
 @BUILD_APP_AS_LIB_FALSE@	$(SSL_LDFLAGS) $(FOM_LDFLAGS) \
 @BUILD_APP_AS_LIB_FALSE@	$(am__append_1)
@@ -548,9 +661,115 @@ clean-libLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
+../crypto/cyclone_crypto/hash/$(am__dirstamp):
+	@$(MKDIR_P) ../crypto/cyclone_crypto/hash
+	@: > ../crypto/cyclone_crypto/hash/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) ../crypto/cyclone_crypto/hash/$(DEPDIR)
+	@: > ../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/sha256.lo:  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/sha3_512.lo:  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/sha224.lo:  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/sha3_384.lo:  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/sha3_256.lo:  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/sha3_224.lo:  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/sha512.lo:  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/sha512_224.lo:  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/sha512_256.lo:  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/sha384.lo:  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/sha1.lo:  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/xof/$(am__dirstamp):
+	@$(MKDIR_P) ../crypto/cyclone_crypto/xof
+	@: > ../crypto/cyclone_crypto/xof/$(am__dirstamp)
+../crypto/cyclone_crypto/xof/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) ../crypto/cyclone_crypto/xof/$(DEPDIR)
+	@: > ../crypto/cyclone_crypto/xof/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/xof/keccak.lo:  \
+	../crypto/cyclone_crypto/xof/$(am__dirstamp) \
+	../crypto/cyclone_crypto/xof/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/xof/shake.lo:  \
+	../crypto/cyclone_crypto/xof/$(am__dirstamp) \
+	../crypto/cyclone_crypto/xof/$(DEPDIR)/$(am__dirstamp)
+../crypto/common/$(am__dirstamp):
+	@$(MKDIR_P) ../crypto/common
+	@: > ../crypto/common/$(am__dirstamp)
+../crypto/common/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) ../crypto/common/$(DEPDIR)
+	@: > ../crypto/common/$(DEPDIR)/$(am__dirstamp)
+../crypto/common/cpu_endian.lo: ../crypto/common/$(am__dirstamp) \
+	../crypto/common/$(DEPDIR)/$(am__dirstamp)
+../crypto/common/os_port_posix.lo: ../crypto/common/$(am__dirstamp) \
+	../crypto/common/$(DEPDIR)/$(am__dirstamp)
 
 libacvp_app.la: $(libacvp_app_la_OBJECTS) $(libacvp_app_la_DEPENDENCIES) $(EXTRA_libacvp_app_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) $(am_libacvp_app_la_rpath) $(libacvp_app_la_OBJECTS) $(libacvp_app_la_LIBADD) $(LIBS)
+../crypto/cyclone_crypto/hash/acvp_app-sha256.$(OBJEXT):  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/acvp_app-sha3_512.$(OBJEXT):  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/acvp_app-sha224.$(OBJEXT):  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/acvp_app-sha3_384.$(OBJEXT):  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/acvp_app-sha3_256.$(OBJEXT):  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/acvp_app-sha3_224.$(OBJEXT):  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/acvp_app-sha512.$(OBJEXT):  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/acvp_app-sha512_224.$(OBJEXT):  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/acvp_app-sha512_256.$(OBJEXT):  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/acvp_app-sha384.$(OBJEXT):  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/hash/acvp_app-sha1.$(OBJEXT):  \
+	../crypto/cyclone_crypto/hash/$(am__dirstamp) \
+	../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/xof/acvp_app-keccak.$(OBJEXT):  \
+	../crypto/cyclone_crypto/xof/$(am__dirstamp) \
+	../crypto/cyclone_crypto/xof/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/xof/acvp_app-shake.$(OBJEXT):  \
+	../crypto/cyclone_crypto/xof/$(am__dirstamp) \
+	../crypto/cyclone_crypto/xof/$(DEPDIR)/$(am__dirstamp)
+../crypto/common/acvp_app-cpu_endian.$(OBJEXT):  \
+	../crypto/common/$(am__dirstamp) \
+	../crypto/common/$(DEPDIR)/$(am__dirstamp)
+../crypto/common/acvp_app-os_port_posix.$(OBJEXT):  \
+	../crypto/common/$(am__dirstamp) \
+	../crypto/common/$(DEPDIR)/$(am__dirstamp)
 
 acvp_app$(EXEEXT): $(acvp_app_OBJECTS) $(acvp_app_DEPENDENCIES) $(EXTRA_acvp_app_DEPENDENCIES) 
 	@rm -f acvp_app$(EXEEXT)
@@ -558,10 +777,46 @@ acvp_app$(EXEEXT): $(acvp_app_OBJECTS) $(acvp_app_DEPENDENCIES) $(EXTRA_acvp_app
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f ../crypto/common/*.$(OBJEXT)
+	-rm -f ../crypto/common/*.lo
+	-rm -f ../crypto/cyclone_crypto/hash/*.$(OBJEXT)
+	-rm -f ../crypto/cyclone_crypto/hash/*.lo
+	-rm -f ../crypto/cyclone_crypto/xof/*.$(OBJEXT)
+	-rm -f ../crypto/cyclone_crypto/xof/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/common/$(DEPDIR)/acvp_app-cpu_endian.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/common/$(DEPDIR)/acvp_app-os_port_posix.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/common/$(DEPDIR)/cpu_endian.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/common/$(DEPDIR)/os_port_posix.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha1.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha224.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha256.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha384.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_224.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_256.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_384.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_512.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512_224.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512_256.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/sha1.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/sha224.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/sha256.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/sha384.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/sha3_224.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/sha3_256.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/sha3_384.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/sha3_512.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/sha512.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/sha512_224.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/sha512_256.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/xof/$(DEPDIR)/acvp_app-keccak.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/xof/$(DEPDIR)/acvp_app-shake.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/xof/$(DEPDIR)/keccak.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/xof/$(DEPDIR)/shake.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/acvp_app-app_aes.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/acvp_app-app_cli.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/acvp_app-app_cmac.Po@am__quote@ # am--include-marker
@@ -833,11 +1088,224 @@ acvp_app-app_utils.obj: app_utils.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o acvp_app-app_utils.obj `if test -f 'app_utils.c'; then $(CYGPATH_W) 'app_utils.c'; else $(CYGPATH_W) '$(srcdir)/app_utils.c'; fi`
 
+../crypto/cyclone_crypto/hash/acvp_app-sha256.o: ../crypto/cyclone_crypto/hash/sha256.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha256.o -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha256.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha256.o `test -f '../crypto/cyclone_crypto/hash/sha256.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha256.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha256.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha256.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha256.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha256.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha256.o `test -f '../crypto/cyclone_crypto/hash/sha256.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha256.c
+
+../crypto/cyclone_crypto/hash/acvp_app-sha256.obj: ../crypto/cyclone_crypto/hash/sha256.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha256.obj -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha256.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha256.obj `if test -f '../crypto/cyclone_crypto/hash/sha256.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha256.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha256.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha256.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha256.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha256.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha256.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha256.obj `if test -f '../crypto/cyclone_crypto/hash/sha256.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha256.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha256.c'; fi`
+
+../crypto/cyclone_crypto/hash/acvp_app-sha3_512.o: ../crypto/cyclone_crypto/hash/sha3_512.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha3_512.o -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_512.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha3_512.o `test -f '../crypto/cyclone_crypto/hash/sha3_512.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha3_512.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_512.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_512.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha3_512.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha3_512.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha3_512.o `test -f '../crypto/cyclone_crypto/hash/sha3_512.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha3_512.c
+
+../crypto/cyclone_crypto/hash/acvp_app-sha3_512.obj: ../crypto/cyclone_crypto/hash/sha3_512.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha3_512.obj -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_512.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha3_512.obj `if test -f '../crypto/cyclone_crypto/hash/sha3_512.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha3_512.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha3_512.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_512.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_512.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha3_512.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha3_512.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha3_512.obj `if test -f '../crypto/cyclone_crypto/hash/sha3_512.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha3_512.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha3_512.c'; fi`
+
+../crypto/cyclone_crypto/hash/acvp_app-sha224.o: ../crypto/cyclone_crypto/hash/sha224.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha224.o -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha224.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha224.o `test -f '../crypto/cyclone_crypto/hash/sha224.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha224.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha224.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha224.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha224.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha224.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha224.o `test -f '../crypto/cyclone_crypto/hash/sha224.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha224.c
+
+../crypto/cyclone_crypto/hash/acvp_app-sha224.obj: ../crypto/cyclone_crypto/hash/sha224.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha224.obj -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha224.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha224.obj `if test -f '../crypto/cyclone_crypto/hash/sha224.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha224.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha224.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha224.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha224.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha224.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha224.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha224.obj `if test -f '../crypto/cyclone_crypto/hash/sha224.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha224.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha224.c'; fi`
+
+../crypto/cyclone_crypto/hash/acvp_app-sha3_384.o: ../crypto/cyclone_crypto/hash/sha3_384.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha3_384.o -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_384.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha3_384.o `test -f '../crypto/cyclone_crypto/hash/sha3_384.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha3_384.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_384.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_384.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha3_384.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha3_384.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha3_384.o `test -f '../crypto/cyclone_crypto/hash/sha3_384.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha3_384.c
+
+../crypto/cyclone_crypto/hash/acvp_app-sha3_384.obj: ../crypto/cyclone_crypto/hash/sha3_384.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha3_384.obj -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_384.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha3_384.obj `if test -f '../crypto/cyclone_crypto/hash/sha3_384.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha3_384.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha3_384.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_384.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_384.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha3_384.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha3_384.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha3_384.obj `if test -f '../crypto/cyclone_crypto/hash/sha3_384.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha3_384.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha3_384.c'; fi`
+
+../crypto/cyclone_crypto/hash/acvp_app-sha3_256.o: ../crypto/cyclone_crypto/hash/sha3_256.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha3_256.o -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_256.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha3_256.o `test -f '../crypto/cyclone_crypto/hash/sha3_256.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha3_256.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_256.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_256.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha3_256.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha3_256.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha3_256.o `test -f '../crypto/cyclone_crypto/hash/sha3_256.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha3_256.c
+
+../crypto/cyclone_crypto/hash/acvp_app-sha3_256.obj: ../crypto/cyclone_crypto/hash/sha3_256.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha3_256.obj -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_256.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha3_256.obj `if test -f '../crypto/cyclone_crypto/hash/sha3_256.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha3_256.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha3_256.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_256.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_256.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha3_256.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha3_256.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha3_256.obj `if test -f '../crypto/cyclone_crypto/hash/sha3_256.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha3_256.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha3_256.c'; fi`
+
+../crypto/cyclone_crypto/hash/acvp_app-sha3_224.o: ../crypto/cyclone_crypto/hash/sha3_224.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha3_224.o -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_224.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha3_224.o `test -f '../crypto/cyclone_crypto/hash/sha3_224.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha3_224.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_224.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_224.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha3_224.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha3_224.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha3_224.o `test -f '../crypto/cyclone_crypto/hash/sha3_224.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha3_224.c
+
+../crypto/cyclone_crypto/hash/acvp_app-sha3_224.obj: ../crypto/cyclone_crypto/hash/sha3_224.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha3_224.obj -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_224.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha3_224.obj `if test -f '../crypto/cyclone_crypto/hash/sha3_224.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha3_224.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha3_224.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_224.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_224.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha3_224.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha3_224.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha3_224.obj `if test -f '../crypto/cyclone_crypto/hash/sha3_224.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha3_224.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha3_224.c'; fi`
+
+../crypto/cyclone_crypto/hash/acvp_app-sha512.o: ../crypto/cyclone_crypto/hash/sha512.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha512.o -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha512.o `test -f '../crypto/cyclone_crypto/hash/sha512.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha512.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha512.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha512.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha512.o `test -f '../crypto/cyclone_crypto/hash/sha512.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha512.c
+
+../crypto/cyclone_crypto/hash/acvp_app-sha512.obj: ../crypto/cyclone_crypto/hash/sha512.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha512.obj -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha512.obj `if test -f '../crypto/cyclone_crypto/hash/sha512.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha512.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha512.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha512.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha512.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha512.obj `if test -f '../crypto/cyclone_crypto/hash/sha512.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha512.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha512.c'; fi`
+
+../crypto/cyclone_crypto/hash/acvp_app-sha512_224.o: ../crypto/cyclone_crypto/hash/sha512_224.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha512_224.o -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512_224.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha512_224.o `test -f '../crypto/cyclone_crypto/hash/sha512_224.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha512_224.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512_224.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512_224.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha512_224.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha512_224.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha512_224.o `test -f '../crypto/cyclone_crypto/hash/sha512_224.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha512_224.c
+
+../crypto/cyclone_crypto/hash/acvp_app-sha512_224.obj: ../crypto/cyclone_crypto/hash/sha512_224.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha512_224.obj -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512_224.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha512_224.obj `if test -f '../crypto/cyclone_crypto/hash/sha512_224.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha512_224.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha512_224.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512_224.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512_224.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha512_224.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha512_224.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha512_224.obj `if test -f '../crypto/cyclone_crypto/hash/sha512_224.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha512_224.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha512_224.c'; fi`
+
+../crypto/cyclone_crypto/hash/acvp_app-sha512_256.o: ../crypto/cyclone_crypto/hash/sha512_256.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha512_256.o -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512_256.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha512_256.o `test -f '../crypto/cyclone_crypto/hash/sha512_256.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha512_256.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512_256.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512_256.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha512_256.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha512_256.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha512_256.o `test -f '../crypto/cyclone_crypto/hash/sha512_256.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha512_256.c
+
+../crypto/cyclone_crypto/hash/acvp_app-sha512_256.obj: ../crypto/cyclone_crypto/hash/sha512_256.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha512_256.obj -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512_256.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha512_256.obj `if test -f '../crypto/cyclone_crypto/hash/sha512_256.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha512_256.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha512_256.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512_256.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512_256.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha512_256.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha512_256.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha512_256.obj `if test -f '../crypto/cyclone_crypto/hash/sha512_256.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha512_256.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha512_256.c'; fi`
+
+../crypto/cyclone_crypto/hash/acvp_app-sha384.o: ../crypto/cyclone_crypto/hash/sha384.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha384.o -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha384.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha384.o `test -f '../crypto/cyclone_crypto/hash/sha384.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha384.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha384.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha384.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha384.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha384.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha384.o `test -f '../crypto/cyclone_crypto/hash/sha384.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha384.c
+
+../crypto/cyclone_crypto/hash/acvp_app-sha384.obj: ../crypto/cyclone_crypto/hash/sha384.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha384.obj -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha384.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha384.obj `if test -f '../crypto/cyclone_crypto/hash/sha384.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha384.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha384.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha384.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha384.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha384.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha384.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha384.obj `if test -f '../crypto/cyclone_crypto/hash/sha384.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha384.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha384.c'; fi`
+
+../crypto/cyclone_crypto/hash/acvp_app-sha1.o: ../crypto/cyclone_crypto/hash/sha1.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha1.o -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha1.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha1.o `test -f '../crypto/cyclone_crypto/hash/sha1.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha1.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha1.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha1.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha1.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha1.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha1.o `test -f '../crypto/cyclone_crypto/hash/sha1.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/hash/sha1.c
+
+../crypto/cyclone_crypto/hash/acvp_app-sha1.obj: ../crypto/cyclone_crypto/hash/sha1.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/hash/acvp_app-sha1.obj -MD -MP -MF ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha1.Tpo -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha1.obj `if test -f '../crypto/cyclone_crypto/hash/sha1.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha1.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha1.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha1.Tpo ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha1.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/hash/sha1.c' object='../crypto/cyclone_crypto/hash/acvp_app-sha1.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/hash/acvp_app-sha1.obj `if test -f '../crypto/cyclone_crypto/hash/sha1.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/hash/sha1.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/hash/sha1.c'; fi`
+
+../crypto/cyclone_crypto/xof/acvp_app-keccak.o: ../crypto/cyclone_crypto/xof/keccak.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/xof/acvp_app-keccak.o -MD -MP -MF ../crypto/cyclone_crypto/xof/$(DEPDIR)/acvp_app-keccak.Tpo -c -o ../crypto/cyclone_crypto/xof/acvp_app-keccak.o `test -f '../crypto/cyclone_crypto/xof/keccak.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/xof/keccak.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/xof/$(DEPDIR)/acvp_app-keccak.Tpo ../crypto/cyclone_crypto/xof/$(DEPDIR)/acvp_app-keccak.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/xof/keccak.c' object='../crypto/cyclone_crypto/xof/acvp_app-keccak.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/xof/acvp_app-keccak.o `test -f '../crypto/cyclone_crypto/xof/keccak.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/xof/keccak.c
+
+../crypto/cyclone_crypto/xof/acvp_app-keccak.obj: ../crypto/cyclone_crypto/xof/keccak.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/xof/acvp_app-keccak.obj -MD -MP -MF ../crypto/cyclone_crypto/xof/$(DEPDIR)/acvp_app-keccak.Tpo -c -o ../crypto/cyclone_crypto/xof/acvp_app-keccak.obj `if test -f '../crypto/cyclone_crypto/xof/keccak.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/xof/keccak.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/xof/keccak.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/xof/$(DEPDIR)/acvp_app-keccak.Tpo ../crypto/cyclone_crypto/xof/$(DEPDIR)/acvp_app-keccak.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/xof/keccak.c' object='../crypto/cyclone_crypto/xof/acvp_app-keccak.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/xof/acvp_app-keccak.obj `if test -f '../crypto/cyclone_crypto/xof/keccak.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/xof/keccak.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/xof/keccak.c'; fi`
+
+../crypto/cyclone_crypto/xof/acvp_app-shake.o: ../crypto/cyclone_crypto/xof/shake.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/xof/acvp_app-shake.o -MD -MP -MF ../crypto/cyclone_crypto/xof/$(DEPDIR)/acvp_app-shake.Tpo -c -o ../crypto/cyclone_crypto/xof/acvp_app-shake.o `test -f '../crypto/cyclone_crypto/xof/shake.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/xof/shake.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/xof/$(DEPDIR)/acvp_app-shake.Tpo ../crypto/cyclone_crypto/xof/$(DEPDIR)/acvp_app-shake.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/xof/shake.c' object='../crypto/cyclone_crypto/xof/acvp_app-shake.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/xof/acvp_app-shake.o `test -f '../crypto/cyclone_crypto/xof/shake.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/xof/shake.c
+
+../crypto/cyclone_crypto/xof/acvp_app-shake.obj: ../crypto/cyclone_crypto/xof/shake.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/xof/acvp_app-shake.obj -MD -MP -MF ../crypto/cyclone_crypto/xof/$(DEPDIR)/acvp_app-shake.Tpo -c -o ../crypto/cyclone_crypto/xof/acvp_app-shake.obj `if test -f '../crypto/cyclone_crypto/xof/shake.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/xof/shake.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/xof/shake.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/xof/$(DEPDIR)/acvp_app-shake.Tpo ../crypto/cyclone_crypto/xof/$(DEPDIR)/acvp_app-shake.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/xof/shake.c' object='../crypto/cyclone_crypto/xof/acvp_app-shake.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/xof/acvp_app-shake.obj `if test -f '../crypto/cyclone_crypto/xof/shake.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/xof/shake.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/xof/shake.c'; fi`
+
+../crypto/common/acvp_app-cpu_endian.o: ../crypto/common/cpu_endian.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/common/acvp_app-cpu_endian.o -MD -MP -MF ../crypto/common/$(DEPDIR)/acvp_app-cpu_endian.Tpo -c -o ../crypto/common/acvp_app-cpu_endian.o `test -f '../crypto/common/cpu_endian.c' || echo '$(srcdir)/'`../crypto/common/cpu_endian.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/common/$(DEPDIR)/acvp_app-cpu_endian.Tpo ../crypto/common/$(DEPDIR)/acvp_app-cpu_endian.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/common/cpu_endian.c' object='../crypto/common/acvp_app-cpu_endian.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/common/acvp_app-cpu_endian.o `test -f '../crypto/common/cpu_endian.c' || echo '$(srcdir)/'`../crypto/common/cpu_endian.c
+
+../crypto/common/acvp_app-cpu_endian.obj: ../crypto/common/cpu_endian.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/common/acvp_app-cpu_endian.obj -MD -MP -MF ../crypto/common/$(DEPDIR)/acvp_app-cpu_endian.Tpo -c -o ../crypto/common/acvp_app-cpu_endian.obj `if test -f '../crypto/common/cpu_endian.c'; then $(CYGPATH_W) '../crypto/common/cpu_endian.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/common/cpu_endian.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/common/$(DEPDIR)/acvp_app-cpu_endian.Tpo ../crypto/common/$(DEPDIR)/acvp_app-cpu_endian.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/common/cpu_endian.c' object='../crypto/common/acvp_app-cpu_endian.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/common/acvp_app-cpu_endian.obj `if test -f '../crypto/common/cpu_endian.c'; then $(CYGPATH_W) '../crypto/common/cpu_endian.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/common/cpu_endian.c'; fi`
+
+../crypto/common/acvp_app-os_port_posix.o: ../crypto/common/os_port_posix.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/common/acvp_app-os_port_posix.o -MD -MP -MF ../crypto/common/$(DEPDIR)/acvp_app-os_port_posix.Tpo -c -o ../crypto/common/acvp_app-os_port_posix.o `test -f '../crypto/common/os_port_posix.c' || echo '$(srcdir)/'`../crypto/common/os_port_posix.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/common/$(DEPDIR)/acvp_app-os_port_posix.Tpo ../crypto/common/$(DEPDIR)/acvp_app-os_port_posix.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/common/os_port_posix.c' object='../crypto/common/acvp_app-os_port_posix.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/common/acvp_app-os_port_posix.o `test -f '../crypto/common/os_port_posix.c' || echo '$(srcdir)/'`../crypto/common/os_port_posix.c
+
+../crypto/common/acvp_app-os_port_posix.obj: ../crypto/common/os_port_posix.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/common/acvp_app-os_port_posix.obj -MD -MP -MF ../crypto/common/$(DEPDIR)/acvp_app-os_port_posix.Tpo -c -o ../crypto/common/acvp_app-os_port_posix.obj `if test -f '../crypto/common/os_port_posix.c'; then $(CYGPATH_W) '../crypto/common/os_port_posix.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/common/os_port_posix.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/common/$(DEPDIR)/acvp_app-os_port_posix.Tpo ../crypto/common/$(DEPDIR)/acvp_app-os_port_posix.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/common/os_port_posix.c' object='../crypto/common/acvp_app-os_port_posix.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/common/acvp_app-os_port_posix.obj `if test -f '../crypto/common/os_port_posix.c'; then $(CYGPATH_W) '../crypto/common/os_port_posix.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/common/os_port_posix.c'; fi`
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf ../crypto/common/.libs ../crypto/common/_libs
+	-rm -rf ../crypto/cyclone_crypto/hash/.libs ../crypto/cyclone_crypto/hash/_libs
+	-rm -rf ../crypto/cyclone_crypto/xof/.libs ../crypto/cyclone_crypto/xof/_libs
 install-libacvp_app_includeHEADERS: $(libacvp_app_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	@list='$(libacvp_app_include_HEADERS)'; test -n "$(libacvp_app_includedir)" || list=; \
@@ -981,6 +1449,12 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f ../crypto/common/$(DEPDIR)/$(am__dirstamp)
+	-rm -f ../crypto/common/$(am__dirstamp)
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
+	-rm -f ../crypto/cyclone_crypto/hash/$(am__dirstamp)
+	-rm -f ../crypto/cyclone_crypto/xof/$(DEPDIR)/$(am__dirstamp)
+	-rm -f ../crypto/cyclone_crypto/xof/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -991,7 +1465,37 @@ clean-am: clean-binPROGRAMS clean-generic clean-libLTLIBRARIES \
 	clean-libtool mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/acvp_app-app_aes.Po
+		-rm -f ../crypto/common/$(DEPDIR)/acvp_app-cpu_endian.Po
+	-rm -f ../crypto/common/$(DEPDIR)/acvp_app-os_port_posix.Po
+	-rm -f ../crypto/common/$(DEPDIR)/cpu_endian.Plo
+	-rm -f ../crypto/common/$(DEPDIR)/os_port_posix.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha1.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha224.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha256.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha384.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_224.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_256.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_384.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_512.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512_224.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512_256.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha1.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha224.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha256.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha384.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha3_224.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha3_256.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha3_384.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha3_512.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha512.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha512_224.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha512_256.Plo
+	-rm -f ../crypto/cyclone_crypto/xof/$(DEPDIR)/acvp_app-keccak.Po
+	-rm -f ../crypto/cyclone_crypto/xof/$(DEPDIR)/acvp_app-shake.Po
+	-rm -f ../crypto/cyclone_crypto/xof/$(DEPDIR)/keccak.Plo
+	-rm -f ../crypto/cyclone_crypto/xof/$(DEPDIR)/shake.Plo
+	-rm -f ./$(DEPDIR)/acvp_app-app_aes.Po
 	-rm -f ./$(DEPDIR)/acvp_app-app_cli.Po
 	-rm -f ./$(DEPDIR)/acvp_app-app_cmac.Po
 	-rm -f ./$(DEPDIR)/acvp_app-app_des.Po
@@ -1066,7 +1570,37 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/acvp_app-app_aes.Po
+		-rm -f ../crypto/common/$(DEPDIR)/acvp_app-cpu_endian.Po
+	-rm -f ../crypto/common/$(DEPDIR)/acvp_app-os_port_posix.Po
+	-rm -f ../crypto/common/$(DEPDIR)/cpu_endian.Plo
+	-rm -f ../crypto/common/$(DEPDIR)/os_port_posix.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha1.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha224.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha256.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha384.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_224.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_256.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_384.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha3_512.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512_224.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha512_256.Po
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha1.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha224.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha256.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha384.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha3_224.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha3_256.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha3_384.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha3_512.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha512.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha512_224.Plo
+	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/sha512_256.Plo
+	-rm -f ../crypto/cyclone_crypto/xof/$(DEPDIR)/acvp_app-keccak.Po
+	-rm -f ../crypto/cyclone_crypto/xof/$(DEPDIR)/acvp_app-shake.Po
+	-rm -f ../crypto/cyclone_crypto/xof/$(DEPDIR)/keccak.Plo
+	-rm -f ../crypto/cyclone_crypto/xof/$(DEPDIR)/shake.Plo
+	-rm -f ./$(DEPDIR)/acvp_app-app_aes.Po
 	-rm -f ./$(DEPDIR)/acvp_app-app_cli.Po
 	-rm -f ./$(DEPDIR)/acvp_app-app_cmac.Po
 	-rm -f ./$(DEPDIR)/acvp_app-app_des.Po

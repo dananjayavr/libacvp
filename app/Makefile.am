@@ -13,9 +13,27 @@ tmp_sources = app_main.c \
               app_rsa.c \
               app_sha.c \
               app_utils.c \
+              ../crypto/cyclone_crypto/hash/sha256.c \
+              ../crypto/cyclone_crypto/hash/sha3_512.c \
+              ../crypto/cyclone_crypto/hash/sha224.c \
+              ../crypto/cyclone_crypto/hash/sha3_384.c \
+              ../crypto/cyclone_crypto/hash/sha3_256.c \
+              ../crypto/cyclone_crypto/hash/sha3_224.c \
+              ../crypto/cyclone_crypto/hash/sha512.c \
+              ../crypto/cyclone_crypto/hash/sha512_224.c \
+              ../crypto/cyclone_crypto/hash/sha512_256.c \
+              ../crypto/cyclone_crypto/hash/sha384.c \
+              ../crypto/cyclone_crypto/hash/sha1.c \
+              ../crypto/cyclone_crypto/xof/keccak.c \
+              ../crypto/cyclone_crypto/xof/shake.c \
+              ../crypto/common/cpu_endian.c \
+              ../crypto/common/os_port_posix.c \
               app_fips_lcl.h \
               app_fips_init_lcl.h \
               app_lcl.h \
+              ../crypto/os_port_config.h \
+              ../crypto/crypto_config.h \
+              ../crypto/core/crypto.h \
               ketopt.h
 
 if !BUILD_APP_AS_LIB
@@ -23,7 +41,7 @@ bin_PROGRAMS = acvp_app
 
 acvp_app_includedir=$(includedir)/acvp
 acvp_app_SOURCES = ${tmp_sources}
-acvp_app_CFLAGS = -g -fPIE $(LIBACVP_CFLAGS) $(SSL_CFLAGS) $(FOM_CFLAGS) $(SAFEC_CFLAGS)
+acvp_app_CFLAGS = -g -fPIE $(LIBACVP_CFLAGS) $(SSL_CFLAGS) $(FOM_CFLAGS) $(SAFEC_CFLAGS) -I../crypto -I../crypto/common -I../crypto/cyclone_crypto
 acvp_app_LDFLAGS = $(LIBACVP_LDFLAGS) $(SSL_LDFLAGS) $(FOM_LDFLAGS)
 
 if USE_LDL_CHECK
