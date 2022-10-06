@@ -16,6 +16,15 @@
 # include "app_fips_lcl.h"
 #endif
 
+// CycloneCRYPTO includes
+#include "core/crypto.h"
+#include "cipher/cipher_algorithms.h"
+#include "aead/ccm.h"
+#include "aead/gcm.h"
+#include "cipher_mode/cbc.h"
+#include "aead/chacha20_poly1305.h"
+#include "debug.h"
+
 static EVP_CIPHER_CTX *glb_cipher_ctx = NULL; /* need to maintain across calls for MCT */
 
 void app_aes_cleanup(void) {
@@ -28,6 +37,7 @@ int app_aes_handler(ACVP_TEST_CASE *test_case) {
     EVP_CIPHER_CTX *cipher_ctx = NULL;
     const EVP_CIPHER  *cipher = NULL;
     unsigned char *iv = 0;
+
     /* assume fail at first */
     int rv = 0;
     ACVP_SUB_AES alg;
@@ -417,6 +427,11 @@ int app_aes_handler_aead(ACVP_TEST_CASE *test_case) {
     int ret = 0;
     ACVP_SUB_AES alg;
 
+    // CycloneCRYPTO stuff
+    CipherContext cipherContext;
+    uint8_t cyclone_error;
+    const CipherAlgo *cipherAlgo;
+
     if (!test_case) {
         return 1;
     }
@@ -578,6 +593,49 @@ int app_aes_handler_aead(ACVP_TEST_CASE *test_case) {
     case ACVP_SUB_AES_GCM_SIV:
     case ACVP_SUB_AES_ECB:
     case ACVP_SUB_AES_CBC:
+        // Modified version (to add CycloneCRYPTO)
+        switch (tc->key_len) {
+        case 128:
+            cipherAlgo = AES_CIPHER_ALGO;
+            break;
+        default:
+            printf("Unsupported AES-CCM key length\n");
+            rc = 1;
+            goto end;
+        }
+        if (tc->direction == ACVP_SYM_CIPH_DIR_ENCRYPT) {
+
+            cyclone_error = cipherAlgo->init(&cipherContext,tc->key,tc->key_len);
+            if(cyclone_error) {
+                printf("Error initializing CipherAlgo.\n");
+                rc = 1;
+                goto end;
+            }
+
+            cyclone_error = cbcEncrypt(cipherAlgo,&cipherContext,tc->iv,tc->pt,tc->ct,tc->pt_len);
+            if(cyclone_error) {
+                printf("Error CBC Encrypt.\n");
+                rc = 1;
+                goto end;
+            }
+
+        } else if (tc->direction == ACVP_SYM_CIPH_DIR_DECRYPT) {
+
+            cyclone_error = cipherAlgo->init(&cipherContext,tc->key, tc->key_len);
+            if(cyclone_error) {
+                printf("Error initializing CipherAlgo.\n");
+                rc = 1;
+                goto end;
+            }
+
+            cyclone_error = cbcDecrypt(cipherAlgo,&cipherContext,tc->iv,tc->ct,tc->pt,tc->ct_len);
+            if(cyclone_error) {
+                printf("Error CBC Decrypt.\n");
+                rc = 1;
+                goto end;
+            }
+        }
+        break;
     case ACVP_SUB_AES_CFB1:
     case ACVP_SUB_AES_CFB8:
     case ACVP_SUB_AES_CFB128:
