@@ -28,6 +28,10 @@ static EVP_CIPHER_CTX *glb_cipher_ctx = NULL; /* need to maintain across calls f
 
 // CycloneCRYPTO context for MCT
 static CipherContext mctCipherContext = {0};
+static GcmContext mctGcmCipherContext = {0};
+
+// Forward declarations
+void dumpGcmTestVector(ACVP_SYM_CIPHER_TC *tc);
 
 void app_aes_cleanup(void)
 {
@@ -344,12 +348,19 @@ int app_aes_handler(ACVP_TEST_CASE *test_case)
                 } else if (tc->ct_len == 72) {
                     ct_len_in_bytes = 4;
                 }
-                
-                cyclone_error = cbcDecrypt(cipherAlgo, &mctCipherContext, tc->iv, tc->ct, tc->pt, ct_len_in_bytes);
+
+                cyclone_error = cbcDecrypt(cipherAlgo, &mctCipherContext, tc->iv, tc->ct, tc->pt, tc->ct_len / 8);
 
                 if (cyclone_error)
                 {
                     printf("ERROR (%d): cbcDecrypt #1\n", cyclone_error);
+                    // for (int i = 0; i < tc->ct_len; i++ )
+                    // {
+                    //     printf("%02X ", tc->ct[i]);
+                    // }
+                    //printf("\n");
+                    //printf("CT LEN: %d\n", tc->ct_len);
+                    //printf("CT LEN IN BYTES: %d\n", ct_len_in_bytes);
                     goto err;
                 }
             }
@@ -617,6 +628,7 @@ int app_aes_handler_aead(ACVP_TEST_CASE *test_case)
 
     // CycloneCRYPTO stuff
     CipherContext cipherContext;
+    GcmContext gcmContext = {0};
     uint8_t cyclone_error;
     const CipherAlgo *cipherAlgo;
 
@@ -665,13 +677,16 @@ int app_aes_handler_aead(ACVP_TEST_CASE *test_case)
         switch (tc->key_len)
         {
         case 128:
-            cipher = EVP_aes_128_gcm();
+            cipherAlgo = AES_CIPHER_ALGO;
+            //cipher = EVP_aes_128_gcm();
             break;
         case 192:
-            cipher = EVP_aes_192_gcm();
+            cipherAlgo = AES_CIPHER_ALGO;
+            //cipher = EVP_aes_192_gcm();
             break;
         case 256:
-            cipher = EVP_aes_256_gcm();
+            cipherAlgo = AES_CIPHER_ALGO;
+            //cipher = EVP_aes_256_gcm();
             break;
         default:
             printf("Unsupported AES-GCM key length\n");
@@ -680,6 +695,7 @@ int app_aes_handler_aead(ACVP_TEST_CASE *test_case)
         }
         if (tc->direction == ACVP_SYM_CIPH_DIR_ENCRYPT)
         {
+#if 0
             EVP_CIPHER_CTX_set_flags(cipher_ctx, EVP_CIPH_FLAG_NON_FIPS_ALLOW);
             EVP_CipherInit(cipher_ctx, cipher, NULL, NULL, 1);
             EVP_CIPHER_CTX_ctrl(cipher_ctx, EVP_CTRL_GCM_SET_IVLEN, tc->iv_len, 0);
@@ -702,9 +718,28 @@ int app_aes_handler_aead(ACVP_TEST_CASE *test_case)
             }
             EVP_Cipher(cipher_ctx, NULL, NULL, 0);
             EVP_CIPHER_CTX_ctrl(cipher_ctx, EVP_CTRL_GCM_GET_TAG, tc->tag_len, tc->tag);
+#endif
+            //dumpGcmTestVector(tc);
+            printf("gcmInit #1\n");
+            cyclone_error = gcmInit(&gcmContext,AES_CIPHER_ALGO,&cipherContext);
+            if (cyclone_error)
+            {
+                printf("ERROR (%d): gcmInit\n", cyclone_error);
+                goto end;
+            }
+
+            printf("gcmEncrypt #1\n");
+            cyclone_error = gcmEncrypt(&gcmContext,tc->iv,tc->iv_len / 8,tc->aad,tc->aad_len / 8,tc->pt,tc->ct,tc->pt_len / 8,tc->tag,tc->tag_len / 8);
+
+            if (cyclone_error)
+            {
+                printf("ERROR (%d): gcmEncrypt\n", cyclone_error);
+                goto end;
+            }
         }
         else if (tc->direction == ACVP_SYM_CIPH_DIR_DECRYPT)
         {
+#if 0
             EVP_CIPHER_CTX_set_flags(cipher_ctx, EVP_CIPH_FLAG_NON_FIPS_ALLOW);
             EVP_CipherInit_ex(cipher_ctx, cipher, NULL, tc->key, NULL, 0);
             EVP_CIPHER_CTX_ctrl(cipher_ctx, EVP_CTRL_GCM_SET_IVLEN, tc->iv_len, 0);
@@ -743,6 +778,22 @@ int app_aes_handler_aead(ACVP_TEST_CASE *test_case)
             if (ret)
             {
                 rc = 1;
+                goto end;
+            }
+#endif
+            printf("gcmDecrypt #1\n");
+            cyclone_error = gcmInit(&gcmContext,AES_CIPHER_ALGO,&cipherContext);
+            if (cyclone_error)
+            {
+                printf("ERROR (%d): gcmInit\n", cyclone_error);
+                goto end;
+            }
+
+            cyclone_error = gcmDecrypt(&gcmContext,tc->iv,tc->iv_len / 8,tc->aad,tc->aad_len / 8,tc->ct,tc->pt,tc->ct_len / 8,tc->tag,tc->tag_len / 8);
+
+            if (cyclone_error)
+            {
+                printf("ERROR (%d): gcmDecrypt\n", cyclone_error);
                 goto end;
             }
         }
@@ -890,4 +941,57 @@ end:
         EVP_CIPHER_CTX_free(cipher_ctx);
 
     return rc;
+}
+
+
+// Helper functions
+void dumpGcmTestVector(ACVP_SYM_CIPHER_TC *tc) {
+    if(tc->iv_len) {
+        printf("IV: ");
+        for (int i = 0; i < tc->iv_len; i++ )
+        {
+            printf("%02X ", tc->iv[i]);
+        }
+        printf("\n");
+        printf("IV LEN: %d\n",tc->iv_len);
+    }
+
+    if(tc->aad_len) {
+        printf("AAD: ");
+        for (int i = 0; i < tc->aad_len; i++ )
+        {
+            printf("%02X ", tc->aad[i]);
+        }
+        printf("\n");
+        printf("AAD LEN: %d\n",tc->aad_len);
+    }
+    
+    if(tc->ct_len) {
+        printf("CT: ");
+        for (int i = 0; i < tc->ct_len; i++ )
+        {
+            printf("%02X ", tc->ct[i]);
+        }
+        printf("\n");
+        printf("CT LEN: %d\n",tc->ct_len);
+    }
+    if(tc->pt_len) {
+        printf("PT: ");
+        for (int i = 0; i < tc->pt_len; i++ )   
+        {
+            printf("%02X ", tc->pt[i]);
+        }
+        printf("\n");
+        printf("PT LEN: %d\n",tc->pt_len);
+    }
+    if(tc->tag_len) {
+        printf("TAG: ");
+        for (int i = 0; i < tc->tag_len; i++ )
+        {
+            printf("%02X ", tc->tag[i]);
+        }
+        printf("\n");
+        printf("TAG LEN: %d\n",tc->tag_len);
+    }
+
 }

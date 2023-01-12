@@ -28,6 +28,7 @@ tmp_sources = app_main.c \
               ../crypto/cyclone_crypto/xof/shake.c \
               ../crypto/cyclone_crypto/cipher/aes.c \
               ../crypto/cyclone_crypto/cipher_mode/cbc.c \
+              ../crypto/cyclone_crypto/aead/gcm.c \
               ../crypto/common/cpu_endian.c \
               ../crypto/common/os_port_posix.c \
               ../crypto/common/debug.c \
