@@ -302,11 +302,10 @@ int app_aes_handler(ACVP_TEST_CASE *test_case)
             // Intercept AES CBC to use CycloneCRYPTO module
             if (alg == ACVP_SUB_AES_CBC)
             {
-                printf("cbcEncrypt #1\n");
                 cyclone_error = cbcEncrypt(cipherAlgo, &mctCipherContext, tc->iv, tc->pt, tc->ct, tc->pt_len);
                 if (cyclone_error)
                 {
-                    printf("ERROR (%d): cbcEncrypt\n", cyclone_error);
+                    printf("ERROR (%d): cbcEncrypt Failed.\n", cyclone_error);
                     goto err;
                 }
             }
@@ -353,14 +352,7 @@ int app_aes_handler(ACVP_TEST_CASE *test_case)
 
                 if (cyclone_error)
                 {
-                    printf("ERROR (%d): cbcDecrypt #1\n", cyclone_error);
-                    // for (int i = 0; i < tc->ct_len; i++ )
-                    // {
-                    //     printf("%02X ", tc->ct[i]);
-                    // }
-                    //printf("\n");
-                    //printf("CT LEN: %d\n", tc->ct_len);
-                    //printf("CT LEN IN BYTES: %d\n", ct_len_in_bytes);
+                    printf("ERROR (%d): cbcDecrypt Failed.\n", cyclone_error);
                     goto err;
                 }
             }
@@ -399,11 +391,10 @@ int app_aes_handler(ACVP_TEST_CASE *test_case)
             if (alg == ACVP_SUB_AES_CBC)
             {
                 cipherAlgo->init(&cipherContext, tc->key, tc->key_len);
-                printf("cbcEncrypt #2\n");
                 cyclone_error = cbcEncrypt(cipherAlgo, &cipherContext, tc->iv, tc->pt, tc->ct, tc->pt_len);
                 if (cyclone_error != 0)
                 {
-                    printf("ERROR (%d): cbcEncrypt\n", cyclone_error);
+                    printf("ERROR (%d): cbcEncrypt Failed.\n", cyclone_error);
                     goto err;
                 }
             }
@@ -436,7 +427,7 @@ int app_aes_handler(ACVP_TEST_CASE *test_case)
 
                 if (cyclone_error != 0)
                 {
-                    printf("ERROR (%d): cbcDecrypt #2\n", cyclone_error);
+                    printf("ERROR (%d): cbcDecrypt Failed\n", cyclone_error);
                     goto err;
                 }
             }
@@ -720,20 +711,18 @@ int app_aes_handler_aead(ACVP_TEST_CASE *test_case)
             EVP_CIPHER_CTX_ctrl(cipher_ctx, EVP_CTRL_GCM_GET_TAG, tc->tag_len, tc->tag);
 #endif
             //dumpGcmTestVector(tc);
-            printf("gcmInit #1\n");
             cyclone_error = gcmInit(&gcmContext,AES_CIPHER_ALGO,&cipherContext);
             if (cyclone_error)
             {
-                printf("ERROR (%d): gcmInit\n", cyclone_error);
+                printf("ERROR (%d): gcmInit Failed.\n", cyclone_error);
                 goto end;
             }
 
-            printf("gcmEncrypt #1\n");
-            cyclone_error = gcmEncrypt(&gcmContext,tc->iv,tc->iv_len / 8,tc->aad,tc->aad_len / 8,tc->pt,tc->ct,tc->pt_len / 8,tc->tag,tc->tag_len / 8);
+            cyclone_error = gcmEncrypt(&gcmContext,tc->iv,tc->iv_len,tc->aad,tc->aad_len,tc->pt,tc->ct,tc->pt_len / 8,tc->tag,tc->tag_len);
 
             if (cyclone_error)
             {
-                printf("ERROR (%d): gcmEncrypt\n", cyclone_error);
+                printf("ERROR (%d): gcmEncrypt Failed.\n", cyclone_error);
                 goto end;
             }
         }
@@ -781,11 +770,10 @@ int app_aes_handler_aead(ACVP_TEST_CASE *test_case)
                 goto end;
             }
 #endif
-            printf("gcmDecrypt #1\n");
             cyclone_error = gcmInit(&gcmContext,AES_CIPHER_ALGO,&cipherContext);
             if (cyclone_error)
             {
-                printf("ERROR (%d): gcmInit\n", cyclone_error);
+                printf("ERROR (%d): gcmInit Failed\n", cyclone_error);
                 goto end;
             }
 
@@ -793,7 +781,7 @@ int app_aes_handler_aead(ACVP_TEST_CASE *test_case)
 
             if (cyclone_error)
             {
-                printf("ERROR (%d): gcmDecrypt\n", cyclone_error);
+                printf("ERROR (%d): gcmDecrypt Failed\n", cyclone_error);
                 goto end;
             }
         }
@@ -883,11 +871,10 @@ int app_aes_handler_aead(ACVP_TEST_CASE *test_case)
                 goto end;
             }
 
-            printf("cbcEncrypt #3\n");
             cyclone_error = cbcEncrypt(cipherAlgo, &cipherContext, tc->iv, tc->pt, tc->ct, tc->pt_len);
             if (cyclone_error)
             {
-                printf("Error CBC Encrypt.\n");
+                printf("ERROR (%d): cbcEncrypt Failed\n", cyclone_error);
                 rc = 1;
                 goto end;
             }
@@ -911,7 +898,7 @@ int app_aes_handler_aead(ACVP_TEST_CASE *test_case)
 
             if (cyclone_error)
             {
-                printf("Error CBC Decrypt #3.\n");
+                printf("ERROR (%d): cbcDecrypt Failed\n", cyclone_error);
                 rc = 1;
                 goto end;
             }
