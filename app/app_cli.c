@@ -191,11 +191,11 @@ static void print_version_info(void) {
     printf(" FIPS module version: %s\n", FIPS_module_version_text());
 #else
     printf("        Runtime mode: yes\n");
-    if (FIPS_mode()) {
-        printf("           FIPS mode: yes\n");
-    } else {
-        printf("           FIPS mode: no\n");
-    }
+    // if (FIPS_mode()) {
+    //     printf("           FIPS mode: yes\n");
+    // } else {
+    //     printf("           FIPS mode: no\n");
+    // }
 #endif
 
 #ifdef OPENSSL_VERSION_TEXT

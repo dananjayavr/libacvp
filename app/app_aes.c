@@ -20,7 +20,7 @@
 #include "cipher/cipher_algorithms.h"
 #include "aead/ccm.h"
 #include "aead/gcm.h"
-#include "cipher_mode/cbc.h"
+#include "cipher_modes/cbc.h"
 #include "aead/chacha20_poly1305.h"
 #include "debug.h"
 

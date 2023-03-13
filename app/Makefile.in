@@ -161,7 +161,7 @@ am__libacvp_app_la_SOURCES_DIST = app_main.c app_aes.c app_cli.c \
 	../crypto/cyclone_crypto/xof/keccak.c \
 	../crypto/cyclone_crypto/xof/shake.c \
 	../crypto/cyclone_crypto/cipher/aes.c \
-	../crypto/cyclone_crypto/cipher_mode/cbc.c \
+	../crypto/cyclone_crypto/cipher_modes/cbc.c \
 	../crypto/cyclone_crypto/aead/gcm.c \
 	../crypto/common/cpu_endian.c ../crypto/common/os_port_posix.c \
 	../crypto/common/debug.c app_fips_lcl.h app_fips_init_lcl.h \
@@ -185,7 +185,7 @@ am__objects_1 = app_main.lo app_aes.lo app_cli.lo app_cmac.lo \
 	../crypto/cyclone_crypto/xof/keccak.lo \
 	../crypto/cyclone_crypto/xof/shake.lo \
 	../crypto/cyclone_crypto/cipher/aes.lo \
-	../crypto/cyclone_crypto/cipher_mode/cbc.lo \
+	../crypto/cyclone_crypto/cipher_modes/cbc.lo \
 	../crypto/cyclone_crypto/aead/gcm.lo \
 	../crypto/common/cpu_endian.lo \
 	../crypto/common/os_port_posix.lo ../crypto/common/debug.lo
@@ -213,7 +213,7 @@ am__acvp_app_SOURCES_DIST = app_main.c app_aes.c app_cli.c app_cmac.c \
 	../crypto/cyclone_crypto/xof/keccak.c \
 	../crypto/cyclone_crypto/xof/shake.c \
 	../crypto/cyclone_crypto/cipher/aes.c \
-	../crypto/cyclone_crypto/cipher_mode/cbc.c \
+	../crypto/cyclone_crypto/cipher_modes/cbc.c \
 	../crypto/cyclone_crypto/aead/gcm.c \
 	../crypto/common/cpu_endian.c ../crypto/common/os_port_posix.c \
 	../crypto/common/debug.c app_fips_lcl.h app_fips_init_lcl.h \
@@ -241,7 +241,7 @@ am__objects_2 = acvp_app-app_main.$(OBJEXT) acvp_app-app_aes.$(OBJEXT) \
 	../crypto/cyclone_crypto/xof/acvp_app-keccak.$(OBJEXT) \
 	../crypto/cyclone_crypto/xof/acvp_app-shake.$(OBJEXT) \
 	../crypto/cyclone_crypto/cipher/acvp_app-aes.$(OBJEXT) \
-	../crypto/cyclone_crypto/cipher_mode/acvp_app-cbc.$(OBJEXT) \
+	../crypto/cyclone_crypto/cipher_modes/acvp_app-cbc.$(OBJEXT) \
 	../crypto/cyclone_crypto/aead/acvp_app-gcm.$(OBJEXT) \
 	../crypto/common/acvp_app-cpu_endian.$(OBJEXT) \
 	../crypto/common/acvp_app-os_port_posix.$(OBJEXT) \
@@ -278,8 +278,8 @@ am__depfiles_remade =  \
 	../crypto/cyclone_crypto/aead/$(DEPDIR)/gcm.Plo \
 	../crypto/cyclone_crypto/cipher/$(DEPDIR)/acvp_app-aes.Po \
 	../crypto/cyclone_crypto/cipher/$(DEPDIR)/aes.Plo \
-	../crypto/cyclone_crypto/cipher_mode/$(DEPDIR)/acvp_app-cbc.Po \
-	../crypto/cyclone_crypto/cipher_mode/$(DEPDIR)/cbc.Plo \
+	../crypto/cyclone_crypto/cipher_modes/$(DEPDIR)/acvp_app-cbc.Po \
+	../crypto/cyclone_crypto/cipher_modes/$(DEPDIR)/cbc.Plo \
 	../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha1.Po \
 	../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha224.Po \
 	../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha256.Po \
@@ -541,7 +541,7 @@ tmp_sources = app_main.c \
               ../crypto/cyclone_crypto/xof/keccak.c \
               ../crypto/cyclone_crypto/xof/shake.c \
               ../crypto/cyclone_crypto/cipher/aes.c \
-              ../crypto/cyclone_crypto/cipher_mode/cbc.c \
+              ../crypto/cyclone_crypto/cipher_modes/cbc.c \
               ../crypto/cyclone_crypto/aead/gcm.c \
               ../crypto/common/cpu_endian.c \
               ../crypto/common/os_port_posix.c \
@@ -746,15 +746,15 @@ clean-libLTLIBRARIES:
 ../crypto/cyclone_crypto/cipher/aes.lo:  \
 	../crypto/cyclone_crypto/cipher/$(am__dirstamp) \
 	../crypto/cyclone_crypto/cipher/$(DEPDIR)/$(am__dirstamp)
-../crypto/cyclone_crypto/cipher_mode/$(am__dirstamp):
-	@$(MKDIR_P) ../crypto/cyclone_crypto/cipher_mode
-	@: > ../crypto/cyclone_crypto/cipher_mode/$(am__dirstamp)
-../crypto/cyclone_crypto/cipher_mode/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) ../crypto/cyclone_crypto/cipher_mode/$(DEPDIR)
-	@: > ../crypto/cyclone_crypto/cipher_mode/$(DEPDIR)/$(am__dirstamp)
-../crypto/cyclone_crypto/cipher_mode/cbc.lo:  \
-	../crypto/cyclone_crypto/cipher_mode/$(am__dirstamp) \
-	../crypto/cyclone_crypto/cipher_mode/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/cipher_modes/$(am__dirstamp):
+	@$(MKDIR_P) ../crypto/cyclone_crypto/cipher_modes
+	@: > ../crypto/cyclone_crypto/cipher_modes/$(am__dirstamp)
+../crypto/cyclone_crypto/cipher_modes/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) ../crypto/cyclone_crypto/cipher_modes/$(DEPDIR)
+	@: > ../crypto/cyclone_crypto/cipher_modes/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/cipher_modes/cbc.lo:  \
+	../crypto/cyclone_crypto/cipher_modes/$(am__dirstamp) \
+	../crypto/cyclone_crypto/cipher_modes/$(DEPDIR)/$(am__dirstamp)
 ../crypto/cyclone_crypto/aead/$(am__dirstamp):
 	@$(MKDIR_P) ../crypto/cyclone_crypto/aead
 	@: > ../crypto/cyclone_crypto/aead/$(am__dirstamp)
@@ -821,9 +821,9 @@ libacvp_app.la: $(libacvp_app_la_OBJECTS) $(libacvp_app_la_DEPENDENCIES) $(EXTRA
 ../crypto/cyclone_crypto/cipher/acvp_app-aes.$(OBJEXT):  \
 	../crypto/cyclone_crypto/cipher/$(am__dirstamp) \
 	../crypto/cyclone_crypto/cipher/$(DEPDIR)/$(am__dirstamp)
-../crypto/cyclone_crypto/cipher_mode/acvp_app-cbc.$(OBJEXT):  \
-	../crypto/cyclone_crypto/cipher_mode/$(am__dirstamp) \
-	../crypto/cyclone_crypto/cipher_mode/$(DEPDIR)/$(am__dirstamp)
+../crypto/cyclone_crypto/cipher_modes/acvp_app-cbc.$(OBJEXT):  \
+	../crypto/cyclone_crypto/cipher_modes/$(am__dirstamp) \
+	../crypto/cyclone_crypto/cipher_modes/$(DEPDIR)/$(am__dirstamp)
 ../crypto/cyclone_crypto/aead/acvp_app-gcm.$(OBJEXT):  \
 	../crypto/cyclone_crypto/aead/$(am__dirstamp) \
 	../crypto/cyclone_crypto/aead/$(DEPDIR)/$(am__dirstamp)
@@ -849,8 +849,8 @@ mostlyclean-compile:
 	-rm -f ../crypto/cyclone_crypto/aead/*.lo
 	-rm -f ../crypto/cyclone_crypto/cipher/*.$(OBJEXT)
 	-rm -f ../crypto/cyclone_crypto/cipher/*.lo
-	-rm -f ../crypto/cyclone_crypto/cipher_mode/*.$(OBJEXT)
-	-rm -f ../crypto/cyclone_crypto/cipher_mode/*.lo
+	-rm -f ../crypto/cyclone_crypto/cipher_modes/*.$(OBJEXT)
+	-rm -f ../crypto/cyclone_crypto/cipher_modes/*.lo
 	-rm -f ../crypto/cyclone_crypto/hash/*.$(OBJEXT)
 	-rm -f ../crypto/cyclone_crypto/hash/*.lo
 	-rm -f ../crypto/cyclone_crypto/xof/*.$(OBJEXT)
@@ -869,8 +869,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/aead/$(DEPDIR)/gcm.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/cipher/$(DEPDIR)/acvp_app-aes.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/cipher/$(DEPDIR)/aes.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/cipher_mode/$(DEPDIR)/acvp_app-cbc.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/cipher_mode/$(DEPDIR)/cbc.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/cipher_modes/$(DEPDIR)/acvp_app-cbc.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/cipher_modes/$(DEPDIR)/cbc.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha1.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha224.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha256.Po@am__quote@ # am--include-marker
@@ -1364,19 +1364,19 @@ acvp_app-app_utils.obj: app_utils.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/cipher/acvp_app-aes.obj `if test -f '../crypto/cyclone_crypto/cipher/aes.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/cipher/aes.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/cipher/aes.c'; fi`
 
-../crypto/cyclone_crypto/cipher_mode/acvp_app-cbc.o: ../crypto/cyclone_crypto/cipher_mode/cbc.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/cipher_mode/acvp_app-cbc.o -MD -MP -MF ../crypto/cyclone_crypto/cipher_mode/$(DEPDIR)/acvp_app-cbc.Tpo -c -o ../crypto/cyclone_crypto/cipher_mode/acvp_app-cbc.o `test -f '../crypto/cyclone_crypto/cipher_mode/cbc.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/cipher_mode/cbc.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/cipher_mode/$(DEPDIR)/acvp_app-cbc.Tpo ../crypto/cyclone_crypto/cipher_mode/$(DEPDIR)/acvp_app-cbc.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/cipher_mode/cbc.c' object='../crypto/cyclone_crypto/cipher_mode/acvp_app-cbc.o' libtool=no @AMDEPBACKSLASH@
+../crypto/cyclone_crypto/cipher_modes/acvp_app-cbc.o: ../crypto/cyclone_crypto/cipher_modes/cbc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/cipher_modes/acvp_app-cbc.o -MD -MP -MF ../crypto/cyclone_crypto/cipher_modes/$(DEPDIR)/acvp_app-cbc.Tpo -c -o ../crypto/cyclone_crypto/cipher_modes/acvp_app-cbc.o `test -f '../crypto/cyclone_crypto/cipher_modes/cbc.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/cipher_modes/cbc.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/cipher_modes/$(DEPDIR)/acvp_app-cbc.Tpo ../crypto/cyclone_crypto/cipher_modes/$(DEPDIR)/acvp_app-cbc.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/cipher_modes/cbc.c' object='../crypto/cyclone_crypto/cipher_modes/acvp_app-cbc.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/cipher_mode/acvp_app-cbc.o `test -f '../crypto/cyclone_crypto/cipher_mode/cbc.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/cipher_mode/cbc.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/cipher_modes/acvp_app-cbc.o `test -f '../crypto/cyclone_crypto/cipher_modes/cbc.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/cipher_modes/cbc.c
 
-../crypto/cyclone_crypto/cipher_mode/acvp_app-cbc.obj: ../crypto/cyclone_crypto/cipher_mode/cbc.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/cipher_mode/acvp_app-cbc.obj -MD -MP -MF ../crypto/cyclone_crypto/cipher_mode/$(DEPDIR)/acvp_app-cbc.Tpo -c -o ../crypto/cyclone_crypto/cipher_mode/acvp_app-cbc.obj `if test -f '../crypto/cyclone_crypto/cipher_mode/cbc.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/cipher_mode/cbc.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/cipher_mode/cbc.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/cipher_mode/$(DEPDIR)/acvp_app-cbc.Tpo ../crypto/cyclone_crypto/cipher_mode/$(DEPDIR)/acvp_app-cbc.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/cipher_mode/cbc.c' object='../crypto/cyclone_crypto/cipher_mode/acvp_app-cbc.obj' libtool=no @AMDEPBACKSLASH@
+../crypto/cyclone_crypto/cipher_modes/acvp_app-cbc.obj: ../crypto/cyclone_crypto/cipher_modes/cbc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/cipher_modes/acvp_app-cbc.obj -MD -MP -MF ../crypto/cyclone_crypto/cipher_modes/$(DEPDIR)/acvp_app-cbc.Tpo -c -o ../crypto/cyclone_crypto/cipher_modes/acvp_app-cbc.obj `if test -f '../crypto/cyclone_crypto/cipher_modes/cbc.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/cipher_modes/cbc.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/cipher_modes/cbc.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) ../crypto/cyclone_crypto/cipher_modes/$(DEPDIR)/acvp_app-cbc.Tpo ../crypto/cyclone_crypto/cipher_modes/$(DEPDIR)/acvp_app-cbc.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='../crypto/cyclone_crypto/cipher_modes/cbc.c' object='../crypto/cyclone_crypto/cipher_modes/acvp_app-cbc.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/cipher_mode/acvp_app-cbc.obj `if test -f '../crypto/cyclone_crypto/cipher_mode/cbc.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/cipher_mode/cbc.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/cipher_mode/cbc.c'; fi`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -c -o ../crypto/cyclone_crypto/cipher_modes/acvp_app-cbc.obj `if test -f '../crypto/cyclone_crypto/cipher_modes/cbc.c'; then $(CYGPATH_W) '../crypto/cyclone_crypto/cipher_modes/cbc.c'; else $(CYGPATH_W) '$(srcdir)/../crypto/cyclone_crypto/cipher_modes/cbc.c'; fi`
 
 ../crypto/cyclone_crypto/aead/acvp_app-gcm.o: ../crypto/cyclone_crypto/aead/gcm.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(acvp_app_CFLAGS) $(CFLAGS) -MT ../crypto/cyclone_crypto/aead/acvp_app-gcm.o -MD -MP -MF ../crypto/cyclone_crypto/aead/$(DEPDIR)/acvp_app-gcm.Tpo -c -o ../crypto/cyclone_crypto/aead/acvp_app-gcm.o `test -f '../crypto/cyclone_crypto/aead/gcm.c' || echo '$(srcdir)/'`../crypto/cyclone_crypto/aead/gcm.c
@@ -1442,7 +1442,7 @@ clean-libtool:
 	-rm -rf ../crypto/common/.libs ../crypto/common/_libs
 	-rm -rf ../crypto/cyclone_crypto/aead/.libs ../crypto/cyclone_crypto/aead/_libs
 	-rm -rf ../crypto/cyclone_crypto/cipher/.libs ../crypto/cyclone_crypto/cipher/_libs
-	-rm -rf ../crypto/cyclone_crypto/cipher_mode/.libs ../crypto/cyclone_crypto/cipher_mode/_libs
+	-rm -rf ../crypto/cyclone_crypto/cipher_modes/.libs ../crypto/cyclone_crypto/cipher_modes/_libs
 	-rm -rf ../crypto/cyclone_crypto/hash/.libs ../crypto/cyclone_crypto/hash/_libs
 	-rm -rf ../crypto/cyclone_crypto/xof/.libs ../crypto/cyclone_crypto/xof/_libs
 install-libacvp_app_includeHEADERS: $(libacvp_app_include_HEADERS)
@@ -1594,8 +1594,8 @@ distclean-generic:
 	-rm -f ../crypto/cyclone_crypto/aead/$(am__dirstamp)
 	-rm -f ../crypto/cyclone_crypto/cipher/$(DEPDIR)/$(am__dirstamp)
 	-rm -f ../crypto/cyclone_crypto/cipher/$(am__dirstamp)
-	-rm -f ../crypto/cyclone_crypto/cipher_mode/$(DEPDIR)/$(am__dirstamp)
-	-rm -f ../crypto/cyclone_crypto/cipher_mode/$(am__dirstamp)
+	-rm -f ../crypto/cyclone_crypto/cipher_modes/$(DEPDIR)/$(am__dirstamp)
+	-rm -f ../crypto/cyclone_crypto/cipher_modes/$(am__dirstamp)
 	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/$(am__dirstamp)
 	-rm -f ../crypto/cyclone_crypto/hash/$(am__dirstamp)
 	-rm -f ../crypto/cyclone_crypto/xof/$(DEPDIR)/$(am__dirstamp)
@@ -1620,8 +1620,8 @@ distclean: distclean-am
 	-rm -f ../crypto/cyclone_crypto/aead/$(DEPDIR)/gcm.Plo
 	-rm -f ../crypto/cyclone_crypto/cipher/$(DEPDIR)/acvp_app-aes.Po
 	-rm -f ../crypto/cyclone_crypto/cipher/$(DEPDIR)/aes.Plo
-	-rm -f ../crypto/cyclone_crypto/cipher_mode/$(DEPDIR)/acvp_app-cbc.Po
-	-rm -f ../crypto/cyclone_crypto/cipher_mode/$(DEPDIR)/cbc.Plo
+	-rm -f ../crypto/cyclone_crypto/cipher_modes/$(DEPDIR)/acvp_app-cbc.Po
+	-rm -f ../crypto/cyclone_crypto/cipher_modes/$(DEPDIR)/cbc.Plo
 	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha1.Po
 	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha224.Po
 	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha256.Po
@@ -1733,8 +1733,8 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ../crypto/cyclone_crypto/aead/$(DEPDIR)/gcm.Plo
 	-rm -f ../crypto/cyclone_crypto/cipher/$(DEPDIR)/acvp_app-aes.Po
 	-rm -f ../crypto/cyclone_crypto/cipher/$(DEPDIR)/aes.Plo
-	-rm -f ../crypto/cyclone_crypto/cipher_mode/$(DEPDIR)/acvp_app-cbc.Po
-	-rm -f ../crypto/cyclone_crypto/cipher_mode/$(DEPDIR)/cbc.Plo
+	-rm -f ../crypto/cyclone_crypto/cipher_modes/$(DEPDIR)/acvp_app-cbc.Po
+	-rm -f ../crypto/cyclone_crypto/cipher_modes/$(DEPDIR)/cbc.Plo
 	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha1.Po
 	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha224.Po
 	-rm -f ../crypto/cyclone_crypto/hash/$(DEPDIR)/acvp_app-sha256.Po
@@ -1834,4 +1834,4 @@ uninstall-am: uninstall-binPROGRAMS uninstall-libLTLIBRARIES \
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
-.NOEXPORT:
+.NOEXPORT: 
