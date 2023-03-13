@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  *
- * Copyright (C) 2010-2022 Oryx Embedded SARL. All rights reserved.
+ * Copyright (C) 2010-2023 Oryx Embedded SARL. All rights reserved.
  *
  * This file is part of CycloneCRYPTO Open.
  *
@@ -25,7 +25,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * @author Oryx Embedded SARL (www.oryx-embedded.com)
- * @version 2.1.6
+ * @version 2.2.4
  **/
 
 #ifndef _EC_H
@@ -42,6 +42,18 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+
+/**
+ * @brief EC point format
+ **/
+
+typedef enum
+{
+   EC_POINT_FORMAT_COMPRESSED_EVEN = 0x02,
+   EC_POINT_FORMAT_COMPRESSED_ODD  = 0x03,
+   EC_POINT_FORMAT_UNCOMPRESSED    = 0x04
+} EcPointFormat;
 
 
 /**

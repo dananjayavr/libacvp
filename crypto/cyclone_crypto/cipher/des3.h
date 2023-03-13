@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  *
- * Copyright (C) 2010-2022 Oryx Embedded SARL. All rights reserved.
+ * Copyright (C) 2010-2023 Oryx Embedded SARL. All rights reserved.
  *
  * This file is part of CycloneCRYPTO Open.
  *
@@ -25,7 +25,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * @author Oryx Embedded SARL (www.oryx-embedded.com)
- * @version 2.1.6
+ * @version 2.2.4
  **/
 
 #ifndef _DES3_H
@@ -34,6 +34,11 @@
 //Dependencies
 #include "core/crypto.h"
 #include "cipher/des.h"
+
+//Application specific context
+#ifndef DES3_PRIVATE_CONTEXT
+   #define DES3_PRIVATE_CONTEXT
+#endif
 
 //Triple DES block size
 #define DES3_BLOCK_SIZE 8
@@ -55,6 +60,7 @@ typedef struct
    DesContext k1;
    DesContext k2;
    DesContext k3;
+   DES3_PRIVATE_CONTEXT
 } Des3Context;
 
 
@@ -63,8 +69,14 @@ extern const CipherAlgo des3CipherAlgo;
 
 //Triple DES related functions
 error_t des3Init(Des3Context *context, const uint8_t *key, size_t keyLen);
-void des3EncryptBlock(Des3Context *context, const uint8_t *input, uint8_t *output);
-void des3DecryptBlock(Des3Context *context, const uint8_t *input, uint8_t *output);
+
+void des3EncryptBlock(Des3Context *context, const uint8_t *input,
+   uint8_t *output);
+
+void des3DecryptBlock(Des3Context *context, const uint8_t *input,
+   uint8_t *output);
+
+void des3Deinit(Des3Context *context);
 
 //C++ guard
 #ifdef __cplusplus

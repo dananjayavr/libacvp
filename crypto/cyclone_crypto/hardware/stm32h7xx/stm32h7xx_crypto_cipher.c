@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  *
- * Copyright (C) 2010-2022 Oryx Embedded SARL. All rights reserved.
+ * Copyright (C) 2010-2023 Oryx Embedded SARL. All rights reserved.
  *
  * This file is part of CycloneCRYPTO Open.
  *
@@ -25,7 +25,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * @author Oryx Embedded SARL (www.oryx-embedded.com)
- * @version 2.1.6
+ * @version 2.2.4
  **/
 
 //Switch to the appropriate trace level
@@ -38,7 +38,7 @@
 #include "hardware/stm32h7xx/stm32h7xx_crypto.h"
 #include "hardware/stm32h7xx/stm32h7xx_crypto_cipher.h"
 #include "cipher/cipher_algorithms.h"
-#include "cipher_mode/cipher_modes.h"
+#include "cipher_modes/cipher_modes.h"
 #include "aead/aead_algorithms.h"
 #include "debug.h"
 
@@ -2026,7 +2026,7 @@ void ccmProcessData(AesContext *context, const uint8_t *b0, const uint8_t *a,
          //Workaround for CCM decryption mode
          if((mode & CRYP_CR_ALGODIR) != 0)
          {
-            //Pad the final ciphertext block with zeroes
+            //Pad the final plaintext block with zeroes
             osMemset(buffer + length, 0, AES_BLOCK_SIZE - length);
 
             //Wait until the BUSY bit is cleared

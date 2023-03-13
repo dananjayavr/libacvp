@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  *
- * Copyright (C) 2010-2022 Oryx Embedded SARL. All rights reserved.
+ * Copyright (C) 2010-2023 Oryx Embedded SARL. All rights reserved.
  *
  * This file is part of CycloneCRYPTO Open.
  *
@@ -25,7 +25,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * @author Oryx Embedded SARL (www.oryx-embedded.com)
- * @version 2.1.6
+ * @version 2.2.4
  **/
 
 //Switch to the appropriate trace level
@@ -39,7 +39,7 @@
 #include "hardware/esp32/esp32_crypto.h"
 #include "hardware/esp32/esp32_crypto_cipher.h"
 #include "cipher/cipher_algorithms.h"
-#include "cipher_mode/cipher_modes.h"
+#include "cipher_modes/cipher_modes.h"
 #include "debug.h"
 
 //Check crypto library configuration

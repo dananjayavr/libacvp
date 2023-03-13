@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  *
- * Copyright (C) 2010-2022 Oryx Embedded SARL. All rights reserved.
+ * Copyright (C) 2010-2023 Oryx Embedded SARL. All rights reserved.
  *
  * This file is part of CycloneCRYPTO Open.
  *
@@ -25,7 +25,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * @author Oryx Embedded SARL (www.oryx-embedded.com)
- * @version 2.1.6
+ * @version 2.2.4
  **/
 
 //Switch to the appropriate trace level
@@ -246,8 +246,8 @@ error_t chacha20Poly1305Decrypt(const uint8_t *k, size_t kLen,
    //Finally, we decrypt the ciphertext
    chachaCipher(&chachaContext, c, p, length);
 
-   //The calculated tag is bitwise compared to the received tag. The
-   //message is authenticated if and only if the tags match
+   //The calculated tag is bitwise compared to the received tag. The message
+   //is authenticated if and only if the tags match
    for(mask = 0, i = 0; i < tLen; i++)
    {
       mask |= temp[i] ^ t[i];

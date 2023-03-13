@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  *
- * Copyright (C) 2010-2022 Oryx Embedded SARL. All rights reserved.
+ * Copyright (C) 2010-2023 Oryx Embedded SARL. All rights reserved.
  *
  * This file is part of CycloneCRYPTO Open.
  *
@@ -25,7 +25,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * @author Oryx Embedded SARL (www.oryx-embedded.com)
- * @version 2.1.6
+ * @version 2.2.4
  **/
 
 //Switch to the appropriate trace level
@@ -131,7 +131,7 @@ void hashProcessData(uint32_t algo, const uint8_t *data, size_t length,
    }
 
    //Save intermediate hash value
-   for(i = 0; i < 8; i++)
+   for(i = 0; i < hLen; i++)
    {
       h[i] = HASH->CSR[14 + i];
    }

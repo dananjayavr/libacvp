@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  *
- * Copyright (C) 2010-2022 Oryx Embedded SARL. All rights reserved.
+ * Copyright (C) 2010-2023 Oryx Embedded SARL. All rights reserved.
  *
  * This file is part of CycloneCRYPTO Open.
  *
@@ -25,7 +25,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * @author Oryx Embedded SARL (www.oryx-embedded.com)
- * @version 2.1.6
+ * @version 2.2.4
  **/
 
 #ifndef _YARROW_H
@@ -81,7 +81,6 @@ extern const PrngAlgo yarrowPrngAlgo;
 
 //Yarrow related functions
 error_t yarrowInit(YarrowContext *context);
-void yarrowRelease(YarrowContext *context);
 
 error_t yarrowSeed(YarrowContext *context, const uint8_t *input, size_t length);
 
@@ -93,6 +92,8 @@ error_t yarrowRead(YarrowContext *context, uint8_t *output, size_t length);
 void yarrowGenerateBlock(YarrowContext *context, uint8_t *output);
 void yarrowFastReseed(YarrowContext *context);
 void yarrowSlowReseed(YarrowContext *context);
+
+void yarrowDeinit(YarrowContext *context);
 
 //C++ guard
 #ifdef __cplusplus

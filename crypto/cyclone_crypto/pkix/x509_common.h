@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  *
- * Copyright (C) 2010-2022 Oryx Embedded SARL. All rights reserved.
+ * Copyright (C) 2010-2023 Oryx Embedded SARL. All rights reserved.
  *
  * This file is part of CycloneCRYPTO Open.
  *
@@ -25,7 +25,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * @author Oryx Embedded SARL (www.oryx-embedded.com)
- * @version 2.1.6
+ * @version 2.2.4
  **/
 
 #ifndef _X509_COMMON_H
@@ -38,6 +38,13 @@
 #include "ecc/ecdsa.h"
 #include "ecc/eddsa.h"
 #include "date_time.h"
+
+//Signature generation/verification callback functions
+#ifndef X509_SIGN_CALLBACK_SUPPORT
+   #define X509_SIGN_CALLBACK_SUPPORT DISABLED
+#elif (X509_SIGN_CALLBACK_SUPPORT != ENABLED && X509_SIGN_CALLBACK_SUPPORT != DISABLED)
+   #error X509_SIGN_CALLBACK_SUPPORT parameter is not valid
+#endif
 
 //RSA certificate support
 #ifndef X509_RSA_SUPPORT
@@ -361,27 +368,9 @@
    #error X509_MAX_CUSTOM_EXTENSIONS parameter is not valid
 #endif
 
-//Maximum digest size
-#if (X509_SHA3_512_SUPPORT == ENABLED && SHA3_512_SUPPORT == ENABLED)
-   #define X509_MAX_HASH_DIGEST_SIZE 64
-#elif (X509_SHA512_SUPPORT == ENABLED && SHA512_SUPPORT == ENABLED)
-   #define X509_MAX_HASH_DIGEST_SIZE 64
-#elif (X509_SHA3_384_SUPPORT == ENABLED && SHA3_384_SUPPORT == ENABLED)
-   #define X509_MAX_HASH_DIGEST_SIZE 48
-#elif (X509_SHA384_SUPPORT == ENABLED && SHA384_SUPPORT == ENABLED)
-   #define X509_MAX_HASH_DIGEST_SIZE 48
-#elif (X509_SHA3_256_SUPPORT == ENABLED && SHA3_256_SUPPORT == ENABLED)
-   #define X509_MAX_HASH_DIGEST_SIZE 32
-#elif (X509_SHA256_SUPPORT == ENABLED && SHA256_SUPPORT == ENABLED)
-   #define X509_MAX_HASH_DIGEST_SIZE 32
-#elif (X509_SHA3_224_SUPPORT == ENABLED && SHA3_224_SUPPORT == ENABLED)
-   #define X509_MAX_HASH_DIGEST_SIZE 28
-#elif (X509_SHA224_SUPPORT == ENABLED && SHA224_SUPPORT == ENABLED)
-   #define X509_MAX_HASH_DIGEST_SIZE 28
-#elif (X509_SHA1_SUPPORT == ENABLED && SHA1_SUPPORT == ENABLED)
-   #define X509_MAX_HASH_DIGEST_SIZE 20
-#elif (X509_MD5_SUPPORT == ENABLED && MD5_SUPPORT == ENABLED)
-   #define X509_MAX_HASH_DIGEST_SIZE 16
+//Application specific extensions
+#ifndef X509_PRIVATE_EXTENSIONS
+   #define X509_PRIVATE_EXTENSIONS
 #endif
 
 //C++ guard
@@ -426,15 +415,20 @@ typedef enum
 
 typedef enum
 {
-   X509_EXT_KEY_USAGE_SERVER_AUTH      = 0x01,
-   X509_EXT_KEY_USAGE_CLIENT_AUTH      = 0x02,
-   X509_EXT_KEY_USAGE_CODE_SIGNING     = 0x04,
-   X509_EXT_KEY_USAGE_EMAIL_PROTECTION = 0x08,
-   X509_EXT_KEY_USAGE_TIME_STAMPING    = 0x10,
-   X509_EXT_KEY_USAGE_OCSP_SIGNING     = 0x20,
-   X509_EXT_KEY_USAGE_SSH_CLIENT       = 0x40,
-   X509_EXT_KEY_USAGE_SSH_SERVER       = 0x80,
-   X509_EXT_KEY_USAGE_ANY              = 0xFF
+   X509_EXT_KEY_USAGE_SERVER_AUTH      = 0x00000001,
+   X509_EXT_KEY_USAGE_CLIENT_AUTH      = 0x00000002,
+   X509_EXT_KEY_USAGE_CODE_SIGNING     = 0x00000004,
+   X509_EXT_KEY_USAGE_EMAIL_PROTECTION = 0x00000008,
+   X509_EXT_KEY_USAGE_IPSEC_END_SYSTEM = 0x00000010,
+   X509_EXT_KEY_USAGE_IPSEC_TUNNEL     = 0x00000020,
+   X509_EXT_KEY_USAGE_IPSEC_USER       = 0x00000040,
+   X509_EXT_KEY_USAGE_TIME_STAMPING    = 0x00000080,
+   X509_EXT_KEY_USAGE_OCSP_SIGNING     = 0x00000100,
+   X509_EXT_KEY_USAGE_IPSEC_IKE        = 0x00000200,
+   X509_EXT_KEY_USAGE_SSH_CLIENT       = 0x00000400,
+   X509_EXT_KEY_USAGE_SSH_SERVER       = 0x00000800,
+   X509_EXT_KEY_USAGE_DOC_SIGNING      = 0x00001000,
+   X509_EXT_KEY_USAGE_ANY              = 0x00001FFF
 } X509ExtKeyUsageBitmap;
 
 
@@ -636,6 +630,19 @@ typedef struct
 
 
 /**
+ * @brief Algorithm identifier
+ **/
+
+typedef struct
+{
+   const uint8_t *oid;
+   size_t oidLen;
+   const uint8_t *params;
+   size_t paramsLen;
+} X509AlgoId;
+
+
+/**
  * @brief RSA public key
  **/
 
@@ -764,7 +771,7 @@ typedef struct
 typedef struct
 {
    bool_t critical;
-   uint8_t bitmap;
+   uint16_t bitmap;
 } X509ExtendedKeyUsage;
 
 
@@ -861,6 +868,7 @@ typedef struct
    X509NsCertType nsCertType;
    uint_t numCustomExtensions;
    X509Extension customExtensions[X509_MAX_CUSTOM_EXTENSIONS];
+   X509_PRIVATE_EXTENSIONS
 } X509Extensions;
 
 
@@ -1099,7 +1107,7 @@ typedef struct
 
 
 /**
- * @brief PKCS#9 ChallengePassword attribute
+ * @brief PKCS #9 ChallengePassword attribute
  **/
 
 typedef struct
@@ -1179,7 +1187,7 @@ extern const uint8_t X509_GENERATION_QUALIFIER_OID[3];
 extern const uint8_t X509_DN_QUALIFIER_OID[3];
 extern const uint8_t X509_PSEUDONYM_OID[3];
 
-extern const uint8_t X509_SUBJECT_DIRECTORY_ATTR_OID[3];
+extern const uint8_t X509_SUBJECT_DIR_ATTR_OID[3];
 extern const uint8_t X509_SUBJECT_KEY_ID_OID[3];
 extern const uint8_t X509_KEY_USAGE_OID[3];
 extern const uint8_t X509_SUBJECT_ALT_NAME_OID[3];
@@ -1208,10 +1216,15 @@ extern const uint8_t X509_KP_SERVER_AUTH_OID[8];
 extern const uint8_t X509_KP_CLIENT_AUTH_OID[8];
 extern const uint8_t X509_KP_CODE_SIGNING_OID[8];
 extern const uint8_t X509_KP_EMAIL_PROTECTION_OID[8];
+extern const uint8_t X509_KP_IPSEC_END_SYSTEM_OID[8];
+extern const uint8_t X509_KP_IPSEC_TUNNEL_OID[8];
+extern const uint8_t X509_KP_IPSEC_USER_OID[8];
 extern const uint8_t X509_KP_TIME_STAMPING_OID[8];
 extern const uint8_t X509_KP_OCSP_SIGNING_OID[8];
+extern const uint8_t X509_KP_IPSEC_IKE_OID[8];
 extern const uint8_t X509_KP_SSH_CLIENT_OID[8];
 extern const uint8_t X509_KP_SSH_SERVER_OID[8];
+extern const uint8_t X509_KP_DOC_SIGNING_OID[8];
 
 extern const uint8_t X509_CHALLENGE_PASSWORD_OID[9];
 extern const uint8_t X509_EXTENSION_REQUEST_OID[9];

@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  *
- * Copyright (C) 2010-2022 Oryx Embedded SARL. All rights reserved.
+ * Copyright (C) 2010-2023 Oryx Embedded SARL. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,7 +23,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * @author Oryx Embedded SARL (www.oryx-embedded.com)
- * @version 2.1.6
+ * @version 2.2.4
  **/
 
 #ifndef _ERROR_H
@@ -70,6 +70,7 @@ typedef enum
    ERROR_UNEXPECTED_RESPONSE,
    ERROR_INVALID_RESPONSE,
    ERROR_UNEXPECTED_VALUE,
+   ERROR_WAIT_CANCELED,
 
    ERROR_OPEN_FAILED = 200,
    ERROR_CONNECTION_FAILED,
@@ -270,6 +271,7 @@ typedef enum
    ERROR_REQUEST_REJECTED,
 
    ERROR_INVALID_CHANNEL,
+   ERROR_INVALID_GROUP,
    ERROR_UNKNOWN_SERVICE,
    ERROR_UNKNOWN_REQUEST,
    ERROR_FLOW_CONTROL,
@@ -290,6 +292,12 @@ typedef enum
    ERROR_ALREADY_RUNNING,
    ERROR_UNKOWN_KEY,
    ERROR_UNKNOWN_TYPE,
+   ERROR_UNSUPPORTED_OPTION,
+   ERROR_INVALID_SPI,
+   ERROR_RETRY,
+   ERROR_POLICY_FAILURE,
+   ERROR_INVALID_PROPOSAL,
+   ERROR_INVALID_SELECTOR,
 
    ERROR_NO_MATCH,
    ERROR_PARTIAL_MATCH

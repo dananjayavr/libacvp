@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  *
- * Copyright (C) 2010-2022 Oryx Embedded SARL. All rights reserved.
+ * Copyright (C) 2010-2023 Oryx Embedded SARL. All rights reserved.
  *
  * This file is part of CycloneCRYPTO Open.
  *
@@ -25,7 +25,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * @author Oryx Embedded SARL (www.oryx-embedded.com)
- * @version 2.1.6
+ * @version 2.2.4
  **/
 
 //Switch to the appropriate trace level
@@ -38,7 +38,7 @@
 #include "hardware/mimxrt1170/mimxrt1170_crypto.h"
 #include "hardware/mimxrt1170/mimxrt1170_crypto_cipher.h"
 #include "cipher/cipher_algorithms.h"
-#include "cipher_mode/cipher_modes.h"
+#include "cipher_modes/cipher_modes.h"
 #include "aead/aead_algorithms.h"
 #include "debug.h"
 
@@ -1231,12 +1231,13 @@ error_t ctrEncrypt(const CipherAlgo *cipher, void *context, uint_t m,
          }
          else
          {
-            //No data to process
+            //The length of the payload must be a multiple of the block size
+            status = kStatus_InvalidArgument;
          }
       }
       else
       {
-         //The length of the payload must be a multiple of the block size
+         //The value of the parameter is not valid
          status = kStatus_InvalidArgument;
       }
    }

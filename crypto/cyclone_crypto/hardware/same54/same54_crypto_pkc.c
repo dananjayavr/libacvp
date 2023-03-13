@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  *
- * Copyright (C) 2010-2022 Oryx Embedded SARL. All rights reserved.
+ * Copyright (C) 2010-2023 Oryx Embedded SARL. All rights reserved.
  *
  * This file is part of CycloneCRYPTO Open.
  *
@@ -25,14 +25,14 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * @author Oryx Embedded SARL (www.oryx-embedded.com)
- * @version 2.1.6
+ * @version 2.2.4
  **/
 
 //Switch to the appropriate trace level
 #define TRACE_LEVEL CRYPTO_TRACE_LEVEL
 
 //Dependencies
-#include "same54.h"
+#include "sam.h"
 #include "pukcc/CryptoLib_typedef_pb.h"
 #include "pukcc/CryptoLib_Headers_pb.h"
 #include "core/crypto.h"
@@ -59,7 +59,7 @@ PUKCL_PARAM PUKCLParam;
 error_t pukccInit(void)
 {
    //Enable PUKCC clock
-   MCLK->AHBMASK.reg |= MCLK_AHBMASK_PUKCC;
+   MCLK_REGS->MCLK_AHBMASK |= MCLK_AHBMASK_PUKCC_Msk;
 
    //Clear PUKCLParam structure
    osMemset(&PUKCLParam, 0, sizeof(PUKCL_PARAM));

@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  *
- * Copyright (C) 2010-2022 Oryx Embedded SARL. All rights reserved.
+ * Copyright (C) 2010-2023 Oryx Embedded SARL. All rights reserved.
  *
  * This file is part of CycloneCRYPTO Open.
  *
@@ -25,7 +25,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * @author Oryx Embedded SARL (www.oryx-embedded.com)
- * @version 2.1.6
+ * @version 2.2.4
  **/
 
 //Switch to the appropriate trace level
@@ -405,7 +405,7 @@ error_t ecImport(const EcDomainParameters *params, EcPoint *r,
          return ERROR_ILLEGAL_PARAMETER;
 
       //Compressed point representation is not supported
-      if(data[0] != 0x04)
+      if(data[0] != EC_POINT_FORMAT_UNCOMPRESSED)
          return ERROR_ILLEGAL_PARAMETER;
 
       //Convert the x-coordinate to a multiple precision integer
@@ -461,7 +461,7 @@ error_t ecExport(const EcDomainParameters *params, const EcPoint *a,
    else
    {
       //Point compression is not used
-      data[0] = 0x04;
+      data[0] = EC_POINT_FORMAT_UNCOMPRESSED;
 
       //Convert the x-coordinate to an octet string
       error = mpiExport(&a->x, data + 1, k, MPI_FORMAT_BIG_ENDIAN);

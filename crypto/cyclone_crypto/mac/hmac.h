@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  *
- * Copyright (C) 2010-2022 Oryx Embedded SARL. All rights reserved.
+ * Copyright (C) 2010-2023 Oryx Embedded SARL. All rights reserved.
  *
  * This file is part of CycloneCRYPTO Open.
  *
@@ -25,7 +25,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * @author Oryx Embedded SARL (www.oryx-embedded.com)
- * @version 2.1.6
+ * @version 2.2.4
  **/
 
 #ifndef _HMAC_H
@@ -34,6 +34,11 @@
 //Dependencies
 #include "core/crypto.h"
 #include "hash/hash_algorithms.h"
+
+//Application specific context
+#ifndef HMAC_PRIVATE_CONTEXT
+   #define HMAC_PRIVATE_CONTEXT
+#endif
 
 //Inner padding (ipad)
 #define HMAC_IPAD 0x36
@@ -56,6 +61,7 @@ typedef struct
    HashContext hashContext;
    uint8_t key[MAX_HASH_BLOCK_SIZE];
    uint8_t digest[MAX_HASH_DIGEST_SIZE];
+   HMAC_PRIVATE_CONTEXT
 } HmacContext;
 
 
@@ -68,6 +74,8 @@ extern const uint8_t HMAC_WITH_SHA224_OID[8];
 extern const uint8_t HMAC_WITH_SHA256_OID[8];
 extern const uint8_t HMAC_WITH_SHA384_OID[8];
 extern const uint8_t HMAC_WITH_SHA512_OID[8];
+extern const uint8_t HMAC_WITH_SHA512_224_OID[8];
+extern const uint8_t HMAC_WITH_SHA512_256_OID[8];
 extern const uint8_t HMAC_WITH_SHA3_224_OID[9];
 extern const uint8_t HMAC_WITH_SHA3_256_OID[9];
 extern const uint8_t HMAC_WITH_SHA3_384_OID[9];

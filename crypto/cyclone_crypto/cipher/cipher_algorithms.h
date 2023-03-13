@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  *
- * Copyright (C) 2010-2022 Oryx Embedded SARL. All rights reserved.
+ * Copyright (C) 2010-2023 Oryx Embedded SARL. All rights reserved.
  *
  * This file is part of CycloneCRYPTO Open.
  *
@@ -25,7 +25,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * @author Oryx Embedded SARL (www.oryx-embedded.com)
- * @version 2.1.6
+ * @version 2.2.4
  **/
 
 #ifndef _CIPHER_ALGORITHMS_H
@@ -47,6 +47,16 @@
 //RC6 cipher support?
 #if (RC6_SUPPORT == ENABLED)
    #include "cipher/rc6.h"
+#endif
+
+//CAST-128 cipher support?
+#if (CAST128_SUPPORT == ENABLED)
+   #include "cipher/cast128.h"
+#endif
+
+//CAST-256 cipher support?
+#if (CAST256_SUPPORT == ENABLED)
+   #include "cipher/cast256.h"
 #endif
 
 //IDEA cipher support?
@@ -74,6 +84,21 @@
    #include "cipher/blowfish.h"
 #endif
 
+//Twofish cipher support?
+#if (TWOFISH_SUPPORT == ENABLED)
+   #include "cipher/twofish.h"
+#endif
+
+//MARS cipher support?
+#if (MARS_SUPPORT == ENABLED)
+   #include "cipher/mars.h"
+#endif
+
+//Serpent cipher support?
+#if (SERPENT_SUPPORT == ENABLED)
+   #include "cipher/serpent.h"
+#endif
+
 //Camellia cipher support?
 #if (CAMELLIA_SUPPORT == ENABLED)
    #include "cipher/camellia.h"
@@ -94,6 +119,16 @@
    #include "cipher/present.h"
 #endif
 
+//TEA cipher support?
+#if (TEA_SUPPORT == ENABLED)
+   #include "cipher/tea.h"
+#endif
+
+//XTEA cipher support?
+#if (XTEA_SUPPORT == ENABLED)
+   #include "cipher/xtea.h"
+#endif
+
 //Trivium cipher support?
 #if (TRIVIUM_SUPPORT == ENABLED)
    #include "cipher/trivium.h"
@@ -110,28 +145,42 @@
 #endif
 
 //Maximum block size
-#if (CAMELLIA_SUPPORT == ENABLED)
-   #define MAX_CIPHER_BLOCK_SIZE CAMELLIA_BLOCK_SIZE
+#if (RC6_SUPPORT == ENABLED)
+   #define MAX_CIPHER_BLOCK_SIZE RC6_BLOCK_SIZE
+#elif (CAST256_SUPPORT == ENABLED)
+   #define MAX_CIPHER_BLOCK_SIZE CAST256_BLOCK_SIZE
 #elif (AES_SUPPORT == ENABLED)
    #define MAX_CIPHER_BLOCK_SIZE AES_BLOCK_SIZE
+#elif (TWOFISH_SUPPORT == ENABLED)
+   #define MAX_CIPHER_BLOCK_SIZE TWOFISH_BLOCK_SIZE
+#elif (MARS_SUPPORT == ENABLED)
+   #define MAX_CIPHER_BLOCK_SIZE MARS_BLOCK_SIZE
+#elif (SERPENT_SUPPORT == ENABLED)
+   #define MAX_CIPHER_BLOCK_SIZE SERPENT_BLOCK_SIZE
+#elif (CAMELLIA_SUPPORT == ENABLED)
+   #define MAX_CIPHER_BLOCK_SIZE CAMELLIA_BLOCK_SIZE
 #elif (ARIA_SUPPORT == ENABLED)
    #define MAX_CIPHER_BLOCK_SIZE ARIA_BLOCK_SIZE
 #elif (SEED_SUPPORT == ENABLED)
    #define MAX_CIPHER_BLOCK_SIZE SEED_BLOCK_SIZE
-#elif (RC6_SUPPORT == ENABLED)
-   #define MAX_CIPHER_BLOCK_SIZE RC6_BLOCK_SIZE
-#elif (DES3_SUPPORT == ENABLED)
-   #define MAX_CIPHER_BLOCK_SIZE DES3_BLOCK_SIZE
-#elif (DES_SUPPORT == ENABLED)
-   #define MAX_CIPHER_BLOCK_SIZE DES_BLOCK_SIZE
+#elif (RC2_SUPPORT == ENABLED)
+   #define MAX_CIPHER_BLOCK_SIZE RC2_BLOCK_SIZE
+#elif (CAST128_SUPPORT == ENABLED)
+   #define MAX_CIPHER_BLOCK_SIZE CAST128_BLOCK_SIZE
 #elif (IDEA_SUPPORT == ENABLED)
    #define MAX_CIPHER_BLOCK_SIZE IDEA_BLOCK_SIZE
+#elif (DES_SUPPORT == ENABLED)
+   #define MAX_CIPHER_BLOCK_SIZE DES_BLOCK_SIZE
+#elif (DES3_SUPPORT == ENABLED)
+   #define MAX_CIPHER_BLOCK_SIZE DES3_BLOCK_SIZE
 #elif (BLOWFISH_SUPPORT == ENABLED)
    #define MAX_CIPHER_BLOCK_SIZE BLOWFISH_BLOCK_SIZE
 #elif (PRESENT_SUPPORT == ENABLED)
    #define MAX_CIPHER_BLOCK_SIZE PRESENT_BLOCK_SIZE
-#elif (RC2_SUPPORT == ENABLED)
-   #define MAX_CIPHER_BLOCK_SIZE RC2_BLOCK_SIZE
+#elif (TEA_SUPPORT == ENABLED)
+   #define MAX_CIPHER_BLOCK_SIZE TEA_BLOCK_SIZE
+#elif (XTEA_SUPPORT == ENABLED)
+   #define MAX_CIPHER_BLOCK_SIZE XTEA_BLOCK_SIZE
 #endif
 
 //C++ guard
@@ -155,6 +204,12 @@ typedef union
 #if (RC6_SUPPORT == ENABLED)
    Rc6Context rc6Context;
 #endif
+#if (CAST128_SUPPORT == ENABLED)
+   Cast128Context cast128Context;
+#endif
+#if (CAST256_SUPPORT == ENABLED)
+   Cast256Context cast256Context;
+#endif
 #if (IDEA_SUPPORT == ENABLED)
    IdeaContext ideaContext;
 #endif
@@ -170,6 +225,15 @@ typedef union
 #if (BLOWFISH_SUPPORT == ENABLED)
    BlowfishContext blowfishContext;
 #endif
+#if (TWOFISH_SUPPORT == ENABLED)
+   TwofishContext twofishContext;
+#endif
+#if (MARS_SUPPORT == ENABLED)
+   MarsContext marsContext;
+#endif
+#if (SERPENT_SUPPORT == ENABLED)
+   SerpentContext serpentContext;
+#endif
 #if (CAMELLIA_SUPPORT == ENABLED)
    CamelliaContext camelliaContext;
 #endif
@@ -181,6 +245,12 @@ typedef union
 #endif
 #if (PRESENT_SUPPORT == ENABLED)
    PresentContext presentContext;
+#endif
+#if (TEA_SUPPORT == ENABLED)
+   TeaContext teaContext;
+#endif
+#if (XTEA_SUPPORT == ENABLED)
+   XteaContext xteaContext;
 #endif
 #if (TRIVIUM_SUPPORT == ENABLED)
    TriviumContext triviumContext;

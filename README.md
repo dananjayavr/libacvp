@@ -14,12 +14,17 @@
 
 ### Installing libacvp on a fresh Linux machine.
 
+#### Dependencies 
+ - ` $ sudo apt install openssl libssl-devel curl libcurl4-openssl-devel` 
  - ` $ ./configure --with-ssl-dir=/usr/include/openssl --with-libcurl-dir=/usr/include/x86_64-linux-gnu/curl/` 
  - ` $ make clean` 
  - ` $ make -j$(nproc)` 
  - ` sudo make install` 
-
+ 
+Note : Please create crypto_config.h and os_port_config.h in crypto/ directory to get the app to compile properly.
 Note : ` dpkg -L <package name>` , to locate a library install using apt
+Note : Recent versions of OpenSSL (v3+) FIPS_Mode API has been removed. app/app_cli.c file has one FIPS API call.
+       In case of errors in ./configure script, please comment out lines 194 thru 198 of app/app_cli.c
 
 ### Building the test app bundled with libacvp
 

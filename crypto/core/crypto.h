@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  *
- * Copyright (C) 2010-2022 Oryx Embedded SARL. All rights reserved.
+ * Copyright (C) 2010-2023 Oryx Embedded SARL. All rights reserved.
  *
  * This file is part of CycloneCRYPTO Open.
  *
@@ -25,7 +25,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * @author Oryx Embedded SARL (www.oryx-embedded.com)
- * @version 2.1.6
+ * @version 2.2.4
  **/
 
 #ifndef _CRYPTO_H
@@ -66,13 +66,13 @@
 #endif
 
 //Version string
-#define CYCLONE_CRYPTO_VERSION_STRING "2.1.6"
+#define CYCLONE_CRYPTO_VERSION_STRING "2.2.4"
 //Major version
 #define CYCLONE_CRYPTO_MAJOR_VERSION 2
 //Minor version
-#define CYCLONE_CRYPTO_MINOR_VERSION 1
+#define CYCLONE_CRYPTO_MINOR_VERSION 2
 //Revision number
-#define CYCLONE_CRYPTO_REV_NUMBER 6
+#define CYCLONE_CRYPTO_REV_NUMBER 4
 
 //Multiple precision integer support
 #ifndef MPI_SUPPORT
@@ -375,6 +375,20 @@
    #error RC6_SUPPORT parameter is not valid
 #endif
 
+//CAST-128 encryption support
+#ifndef CAST128_SUPPORT
+   #define CAST128_SUPPORT DISABLED
+#elif (CAST128_SUPPORT != ENABLED && CAST128_SUPPORT != DISABLED)
+   #error CAST128_SUPPORT parameter is not valid
+#endif
+
+//CAST-256 encryption support
+#ifndef CAST256_SUPPORT
+   #define CAST256_SUPPORT DISABLED
+#elif (CAST256_SUPPORT != ENABLED && CAST256_SUPPORT != DISABLED)
+   #error CAST256_SUPPORT parameter is not valid
+#endif
+
 //IDEA encryption support
 #ifndef IDEA_SUPPORT
    #define IDEA_SUPPORT DISABLED
@@ -410,23 +424,44 @@
    #error BLOWFISH_SUPPORT parameter is not valid
 #endif
 
+//Twofish encryption support
+#ifndef TWOFISH_SUPPORT
+   #define TWOFISH_SUPPORT DISABLED
+#elif (TWOFISH_SUPPORT != ENABLED && TWOFISH_SUPPORT != DISABLED)
+   #error TWOFISH_SUPPORT parameter is not valid
+#endif
+
+//MARS encryption support
+#ifndef MARS_SUPPORT
+   #define MARS_SUPPORT DISABLED
+#elif (MARS_SUPPORT != ENABLED && MARS_SUPPORT != DISABLED)
+   #error MARS_SUPPORT parameter is not valid
+#endif
+
+//Serpent encryption support
+#ifndef SERPENT_SUPPORT
+   #define SERPENT_SUPPORT DISABLED
+#elif (SERPENT_SUPPORT != ENABLED && SERPENT_SUPPORT != DISABLED)
+   #error SERPENT_SUPPORT parameter is not valid
+#endif
+
 //Camellia encryption support
 #ifndef CAMELLIA_SUPPORT
-   #define CAMELLIA_SUPPORT ENABLED
+   #define CAMELLIA_SUPPORT DISABLED
 #elif (CAMELLIA_SUPPORT != ENABLED && CAMELLIA_SUPPORT != DISABLED)
    #error CAMELLIA_SUPPORT parameter is not valid
 #endif
 
 //ARIA encryption support
 #ifndef ARIA_SUPPORT
-   #define ARIA_SUPPORT ENABLED
+   #define ARIA_SUPPORT DISABLED
 #elif (ARIA_SUPPORT != ENABLED && ARIA_SUPPORT != DISABLED)
    #error ARIA_SUPPORT parameter is not valid
 #endif
 
 //SEED encryption support
 #ifndef SEED_SUPPORT
-   #define SEED_SUPPORT ENABLED
+   #define SEED_SUPPORT DISABLED
 #elif (SEED_SUPPORT != ENABLED && SEED_SUPPORT != DISABLED)
    #error SEED_SUPPORT parameter is not valid
 #endif
@@ -436,6 +471,20 @@
    #define PRESENT_SUPPORT DISABLED
 #elif (PRESENT_SUPPORT != ENABLED && PRESENT_SUPPORT != DISABLED)
    #error PRESENT_SUPPORT parameter is not valid
+#endif
+
+//TEA encryption support
+#ifndef TEA_SUPPORT
+   #define TEA_SUPPORT DISABLED
+#elif (TEA_SUPPORT != ENABLED && TEA_SUPPORT != DISABLED)
+   #error TEA_SUPPORT parameter is not valid
+#endif
+
+//XTEA encryption support
+#ifndef XTEA_SUPPORT
+   #define XTEA_SUPPORT DISABLED
+#elif (XTEA_SUPPORT != ENABLED && XTEA_SUPPORT != DISABLED)
+   #error XTEA_SUPPORT parameter is not valid
 #endif
 
 //Trivium encryption support
@@ -571,6 +620,13 @@
    #error ECDSA_SUPPORT parameter is not valid
 #endif
 
+//Streamlined NTRU Prime support
+#ifndef SNTRUP761_SUPPORT
+   #define SNTRUP761_SUPPORT DISABLED
+#elif (SNTRUP761_SUPPORT != ENABLED && SNTRUP761_SUPPORT != DISABLED)
+   #error SNTRUP761_SUPPORT parameter is not valid
+#endif
+
 //HKDF support
 #ifndef HKDF_SUPPORT
    #define HKDF_SUPPORT DISABLED
@@ -583,6 +639,13 @@
    #define PBKDF_SUPPORT ENABLED
 #elif (PBKDF_SUPPORT != ENABLED && PBKDF_SUPPORT != DISABLED)
    #error PBKDF_SUPPORT parameter is not valid
+#endif
+
+//Concat KDF support
+#ifndef CONCAT_KDF_SUPPORT
+   #define CONCAT_KDF_SUPPORT DISABLED
+#elif (CONCAT_KDF_SUPPORT != ENABLED && CONCAT_KDF_SUPPORT != DISABLED)
+   #error CONCAT_KDF_SUPPORT parameter is not valid
 #endif
 
 //bcrypt support
@@ -632,6 +695,13 @@
    #define X509_SUPPORT ENABLED
 #elif (X509_SUPPORT != ENABLED && X509_SUPPORT != DISABLED)
    #error X509_SUPPORT parameter is not valid
+#endif
+
+//PKCS #5 support
+#ifndef PKCS5_SUPPORT
+   #define PKCS5_SUPPORT DISABLED
+#elif (PKCS5_SUPPORT != ENABLED && PKCS5_SUPPORT != DISABLED)
+   #error PKCS5_SUPPORT parameter is not valid
 #endif
 
 //Allocate memory block
@@ -786,6 +856,10 @@
 #define CRYPTO_SELECT_64(a, b, c) \
    _U64((_U64(a) & (_U64(c) - 1U)) | (_U64(b) & ~(_U64(c) - 1U)))
 
+//Forward declaration of PrngAlgo structure
+struct _PrngAlgo;
+#define PrngAlgo struct _PrngAlgo
+
 //C++ guard
 #ifdef __cplusplus
 extern "C" {
@@ -823,25 +897,57 @@ typedef enum
 
 
 //Common API for hash algorithms
-typedef error_t (*HashAlgoCompute)(const void *data, size_t length, uint8_t *digest);
+typedef error_t (*HashAlgoCompute)(const void *data, size_t length,
+   uint8_t *digest);
+
 typedef void (*HashAlgoInit)(void *context);
+
 typedef void (*HashAlgoUpdate)(void *context, const void *data, size_t length);
+
 typedef void (*HashAlgoFinal)(void *context, uint8_t *digest);
+
 typedef void (*HashAlgoFinalRaw)(void *context, uint8_t *digest);
 
 //Common API for encryption algorithms
-typedef error_t (*CipherAlgoInit)(void *context, const uint8_t *key, size_t keyLen);
-typedef void (*CipherAlgoEncryptStream)(void *context, const uint8_t *input, uint8_t *output, size_t length);
-typedef void (*CipherAlgoDecryptStream)(void *context, const uint8_t *input, uint8_t *output, size_t length);
-typedef void (*CipherAlgoEncryptBlock)(void *context, const uint8_t *input, uint8_t *output);
-typedef void (*CipherAlgoDecryptBlock)(void *context, const uint8_t *input, uint8_t *output);
+typedef error_t (*CipherAlgoInit)(void *context, const uint8_t *key,
+   size_t keyLen);
 
-//Common API for pseudo-random number generators
+typedef void (*CipherAlgoEncryptStream)(void *context, const uint8_t *input,
+   uint8_t *output, size_t length);
+
+typedef void (*CipherAlgoDecryptStream)(void *context, const uint8_t *input,
+   uint8_t *output, size_t length);
+
+typedef void (*CipherAlgoEncryptBlock)(void *context, const uint8_t *input,
+   uint8_t *output);
+
+typedef void (*CipherAlgoDecryptBlock)(void *context, const uint8_t *input,
+   uint8_t *output);
+
+typedef void (*CipherAlgoDeinit)(void *context);
+
+//Common interface for key encapsulation mechanisms (KEM)
+typedef error_t (*KemAlgoGenerateKeyPair)(const PrngAlgo *prngAlgo,
+   void *prngContext, uint8_t *pk, uint8_t *sk);
+
+typedef error_t (*KemAlgoEncapsulate)(const PrngAlgo *prngAlgo,
+   void *prngContext, uint8_t *ct, uint8_t *ss, const uint8_t *pk);
+
+typedef error_t (*KemAlgoDecapsulate)(uint8_t *ss, const uint8_t *ct,
+   const uint8_t *sk);
+
+//Common API for pseudo-random number generators (PRNG)
 typedef error_t (*PrngAlgoInit)(void *context);
-typedef void (*PrngAlgoRelease)(void *context);
-typedef error_t (*PrngAlgoSeed)(void *context, const uint8_t *input, size_t length);
-typedef error_t (*PrngAlgoAddEntropy)(void *context, uint_t source, const uint8_t *input, size_t length, size_t entropy);
+
+typedef error_t (*PrngAlgoSeed)(void *context, const uint8_t *input,
+   size_t length);
+
+typedef error_t (*PrngAlgoAddEntropy)(void *context, uint_t source,
+   const uint8_t *input, size_t length, size_t entropy);
+
 typedef error_t (*PrngAlgoRead)(void *context, uint8_t *output, size_t length);
+
+typedef void (*PrngAlgoDeinit)(void *context);
 
 
 /**
@@ -881,23 +987,41 @@ typedef struct
    CipherAlgoDecryptStream decryptStream;
    CipherAlgoEncryptBlock encryptBlock;
    CipherAlgoDecryptBlock decryptBlock;
+   CipherAlgoDeinit deinit;
 } CipherAlgo;
 
 
 /**
- * @brief Common interface for pseudo-random number generators
+ * @brief Common interface for key encapsulation mechanisms (KEM)
  **/
 
 typedef struct
 {
    const char_t *name;
+   size_t publicKeySize;
+   size_t secretKeySize;
+   size_t ciphertextSize;
+   size_t sharedSecretSize;
+   KemAlgoGenerateKeyPair generateKeyPair;
+   KemAlgoEncapsulate encapsulate;
+   KemAlgoDecapsulate decapsulate;
+} KemAlgo;
+
+
+/**
+ * @brief Common interface for pseudo-random number generators (PRNG)
+ **/
+
+struct _PrngAlgo
+{
+   const char_t *name;
    size_t contextSize;
    PrngAlgoInit init;
-   PrngAlgoRelease release;
    PrngAlgoSeed seed;
    PrngAlgoAddEntropy addEntropy;
    PrngAlgoRead read;
-} PrngAlgo;
+   PrngAlgoDeinit deinit;
+};
 
 
 //C++ guard

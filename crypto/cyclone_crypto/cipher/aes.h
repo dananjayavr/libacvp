@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  *
- * Copyright (C) 2010-2022 Oryx Embedded SARL. All rights reserved.
+ * Copyright (C) 2010-2023 Oryx Embedded SARL. All rights reserved.
  *
  * This file is part of CycloneCRYPTO Open.
  *
@@ -25,7 +25,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * @author Oryx Embedded SARL (www.oryx-embedded.com)
- * @version 2.1.6
+ * @version 2.2.4
  **/
 
 #ifndef _AES_H
@@ -33,6 +33,11 @@
 
 //Dependencies
 #include "core/crypto.h"
+
+//Application specific context
+#ifndef AES_PRIVATE_CONTEXT
+   #define AES_PRIVATE_CONTEXT
+#endif
 
 //AES block size
 #define AES_BLOCK_SIZE 16
@@ -54,6 +59,7 @@ typedef struct
    uint_t nr;
    uint32_t ek[60];
    uint32_t dk[60];
+   AES_PRIVATE_CONTEXT
 } AesContext;
 
 
@@ -62,8 +68,14 @@ extern const CipherAlgo aesCipherAlgo;
 
 //AES related functions
 error_t aesInit(AesContext *context, const uint8_t *key, size_t keyLen);
-void aesEncryptBlock(AesContext *context, const uint8_t *input, uint8_t *output);
-void aesDecryptBlock(AesContext *context, const uint8_t *input, uint8_t *output);
+
+void aesEncryptBlock(AesContext *context, const uint8_t *input,
+   uint8_t *output);
+
+void aesDecryptBlock(AesContext *context, const uint8_t *input,
+   uint8_t *output);
+
+void aesDeinit(AesContext *context);
 
 //C++ guard
 #ifdef __cplusplus

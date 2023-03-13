@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  *
- * Copyright (C) 2010-2022 Oryx Embedded SARL. All rights reserved.
+ * Copyright (C) 2010-2023 Oryx Embedded SARL. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,7 +23,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * @author Oryx Embedded SARL (www.oryx-embedded.com)
- * @version 2.1.6
+ * @version 2.2.4
  **/
 
 #ifndef _OS_PORT_NONE_H
@@ -125,7 +125,7 @@ typedef uint_t OsMutex;
 typedef void (*OsTaskCode)(void *param);
 
 //Tick count
-extern systime_t systemTicks;
+extern volatile systime_t systemTicks;
 
 //Kernel management
 void osInitKernel(void);

@@ -6,7 +6,7 @@
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  *
- * Copyright (C) 2010-2022 Oryx Embedded SARL. All rights reserved.
+ * Copyright (C) 2010-2023 Oryx Embedded SARL. All rights reserved.
  *
  * This file is part of CycloneCRYPTO Open.
  *
@@ -25,7 +25,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * @author Oryx Embedded SARL (www.oryx-embedded.com)
- * @version 2.1.6
+ * @version 2.2.4
  **/
 
 #ifndef _SHA512_H
@@ -33,6 +33,11 @@
 
 //Dependencies
 #include "core/crypto.h"
+
+//Application specific context
+#ifndef SHA512_PRIVATE_CONTEXT
+   #define SHA512_PRIVATE_CONTEXT
+#endif
 
 //SHA-512 block size
 #define SHA512_BLOCK_SIZE 128
@@ -69,10 +74,7 @@ typedef struct
    };
    size_t size;
    uint64_t totalSize;
-#if (defined(MIMXRT1170_CRYPTO_HASH_SUPPORT) && MIMXRT1170_CRYPTO_HASH_SUPPORT == ENABLED)
-   uint32_t caamHandle[3];
-   uint32_t caamContext[58];
-#endif
+   SHA512_PRIVATE_CONTEXT
 } Sha512Context;
 
 
