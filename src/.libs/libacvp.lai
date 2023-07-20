@@ -14,10 +14,10 @@ library_names='libacvp.so.0.0.0 libacvp.so.0 libacvp.so'
 old_library='libacvp.a'
 
 # Linker flags that cannot go in dependency_libs.
-inherited_linker_flags=''
+inherited_linker_flags=' -pthread'
 
 # Libraries that this one depends upon.
-dependency_libs=' -L/usr/include/x86_64-linux-gnu/curl//lib -lcurl'
+dependency_libs=' -L/usr/include/x86_64-linux-gnu/curl//lib /usr/lib/x86_64-linux-gnu/libcurl.la'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''

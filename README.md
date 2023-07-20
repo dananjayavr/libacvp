@@ -40,6 +40,13 @@ Note: make sure to init environmental variables : ACV_SERVER, ACV_CERT_FILE, ACV
 
 ### Accessing the ACVP Server
 
+#### Initialize environemental variables
+
+ - ` $ cd app/`
+ - ` $ source init_env.sh`  
+
+This will initialize the parameters used by the test app. For example, the certificats to connect to the NIST ACVP demo server (copied into `/certs` folder).
+
 #### cURL
 
 ` curl -v --cacert ../certs/acvp.nist.gov.crt --key ../../keys/acvts_rsa_key.pem --cert ../../keys/access_keys/<my_key>.cer -d  '{{"acvVersion":"1.0"}, {"password":"<my_password>"}}' -H "Content-Type: application/json" https://demo.acvts.nist.gov/acvp/v1/login` 

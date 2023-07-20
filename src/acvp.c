@@ -2145,6 +2145,7 @@ static ACVP_RESULT acvp_register(ACVP_CTX *ctx) {
 
     ACVP_LOG_STATUS("Sending registration of capabilities...");
     ACVP_LOG_INFO("%s", reg);
+
     rv = acvp_send_test_session_registration(ctx, reg, reg_len);
     if (rv == ACVP_SUCCESS) {
         rv = acvp_parse_test_session_register(ctx);

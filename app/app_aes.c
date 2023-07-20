@@ -32,6 +32,7 @@ static GcmContext mctGcmCipherContext = {0};
 
 // Forward declarations
 void dumpGcmTestVector(ACVP_SYM_CIPHER_TC *tc);
+void dumpCbcTestVector(ACVP_SYM_CIPHER_TC *tc);
 
 void app_aes_cleanup(void)
 {
@@ -86,6 +87,7 @@ int app_aes_handler(ACVP_TEST_CASE *test_case)
         printf("Invalid cipher value");
         return 1;
     }
+
     switch (alg)
     {
     case ACVP_SUB_AES_ECB:
@@ -206,17 +208,8 @@ int app_aes_handler(ACVP_TEST_CASE *test_case)
         switch (tc->key_len)
         {
         case 128:
-            // cipher = EVP_aes_128_cbc();
-            cipherAlgo = AES_CIPHER_ALGO;
-            cipherAlgo->init(&cipherContext, tc->key, tc->key_len);
-            break;
         case 192:
-            // cipher = EVP_aes_192_cbc();
-            cipherAlgo = AES_CIPHER_ALGO;
-            cipherAlgo->init(&cipherContext, tc->key, tc->key_len);
-            break;
         case 256:
-            // cipher = EVP_aes_256_cbc();
             cipherAlgo = AES_CIPHER_ALGO;
             cipherAlgo->init(&cipherContext, tc->key, tc->key_len);
             break;
@@ -390,11 +383,12 @@ int app_aes_handler(ACVP_TEST_CASE *test_case)
             // Intercept AES CBC to use CycloneCRYPTO module
             if (alg == ACVP_SUB_AES_CBC)
             {
-                cipherAlgo->init(&cipherContext, tc->key, tc->key_len);
+                cipherAlgo->init(&cipherContext, tc->key, tc->key_len / 8);
                 cyclone_error = cbcEncrypt(cipherAlgo, &cipherContext, tc->iv, tc->pt, tc->ct, tc->pt_len);
                 if (cyclone_error != 0)
                 {
                     printf("ERROR (%d): cbcEncrypt Failed.\n", cyclone_error);
+                    rv = 1;
                     goto err;
                 }
             }
@@ -421,13 +415,14 @@ int app_aes_handler(ACVP_TEST_CASE *test_case)
             // Intercept AES CBC to use CycloneCRYPTO module
             if (alg == ACVP_SUB_AES_CBC)
             {
+                cipherAlgo->init(&cipherContext, tc->key, tc->key_len / 8);
 
-                cipherAlgo->init(&cipherContext, tc->key, tc->key_len);
-                cyclone_error = cbcDecrypt(cipherAlgo, &cipherContext, tc->iv, tc->ct, tc->pt, 2); // CipherText Len is in Bytes (16bits = 2 bytes)
+                cyclone_error = cbcDecrypt(cipherAlgo, &cipherContext, tc->iv, tc->ct, tc->pt, tc->ct_len); // CipherText Len is in Bytes (16bits = 2 bytes)
 
                 if (cyclone_error != 0)
                 {
                     printf("ERROR (%d): cbcDecrypt Failed\n", cyclone_error);
+                    rv = 1;
                     goto err;
                 }
             }
@@ -668,16 +663,16 @@ int app_aes_handler_aead(ACVP_TEST_CASE *test_case)
         switch (tc->key_len)
         {
         case 128:
-            cipherAlgo = AES_CIPHER_ALGO;
-            //cipher = EVP_aes_128_gcm();
+            //cipherAlgo = AES_CIPHER_ALGO;
+            cipher = EVP_aes_128_gcm();
             break;
         case 192:
-            cipherAlgo = AES_CIPHER_ALGO;
-            //cipher = EVP_aes_192_gcm();
+            //cipherAlgo = AES_CIPHER_ALGO;
+            cipher = EVP_aes_192_gcm();
             break;
         case 256:
-            cipherAlgo = AES_CIPHER_ALGO;
-            //cipher = EVP_aes_256_gcm();
+            //cipherAlgo = AES_CIPHER_ALGO;
+            cipher = EVP_aes_256_gcm();
             break;
         default:
             printf("Unsupported AES-GCM key length\n");
@@ -686,7 +681,7 @@ int app_aes_handler_aead(ACVP_TEST_CASE *test_case)
         }
         if (tc->direction == ACVP_SYM_CIPH_DIR_ENCRYPT)
         {
-#if 0
+#if 1
             EVP_CIPHER_CTX_set_flags(cipher_ctx, EVP_CIPH_FLAG_NON_FIPS_ALLOW);
             EVP_CipherInit(cipher_ctx, cipher, NULL, NULL, 1);
             EVP_CIPHER_CTX_ctrl(cipher_ctx, EVP_CTRL_GCM_SET_IVLEN, tc->iv_len, 0);
@@ -710,7 +705,7 @@ int app_aes_handler_aead(ACVP_TEST_CASE *test_case)
             EVP_Cipher(cipher_ctx, NULL, NULL, 0);
             EVP_CIPHER_CTX_ctrl(cipher_ctx, EVP_CTRL_GCM_GET_TAG, tc->tag_len, tc->tag);
 #endif
-            //dumpGcmTestVector(tc);
+            /* //dumpGcmTestVector(tc);
             cyclone_error = gcmInit(&gcmContext,AES_CIPHER_ALGO,&cipherContext);
             if (cyclone_error)
             {
@@ -724,11 +719,11 @@ int app_aes_handler_aead(ACVP_TEST_CASE *test_case)
             {
                 printf("ERROR (%d): gcmEncrypt Failed.\n", cyclone_error);
                 goto end;
-            }
+            } */
         }
         else if (tc->direction == ACVP_SYM_CIPH_DIR_DECRYPT)
         {
-#if 0
+#if 1
             EVP_CIPHER_CTX_set_flags(cipher_ctx, EVP_CIPH_FLAG_NON_FIPS_ALLOW);
             EVP_CipherInit_ex(cipher_ctx, cipher, NULL, tc->key, NULL, 0);
             EVP_CIPHER_CTX_ctrl(cipher_ctx, EVP_CTRL_GCM_SET_IVLEN, tc->iv_len, 0);
@@ -770,7 +765,7 @@ int app_aes_handler_aead(ACVP_TEST_CASE *test_case)
                 goto end;
             }
 #endif
-            cyclone_error = gcmInit(&gcmContext,AES_CIPHER_ALGO,&cipherContext);
+            /* cyclone_error = gcmInit(&gcmContext,AES_CIPHER_ALGO,&cipherContext);
             if (cyclone_error)
             {
                 printf("ERROR (%d): gcmInit Failed\n", cyclone_error);
@@ -783,7 +778,7 @@ int app_aes_handler_aead(ACVP_TEST_CASE *test_case)
             {
                 printf("ERROR (%d): gcmDecrypt Failed\n", cyclone_error);
                 goto end;
-            }
+            } */
         }
         break;
     case ACVP_SUB_AES_CCM:
@@ -882,7 +877,7 @@ int app_aes_handler_aead(ACVP_TEST_CASE *test_case)
         else if (tc->direction == ACVP_SYM_CIPH_DIR_DECRYPT)
         {
 
-            cyclone_error = cipherAlgo->init(&cipherContext, tc->key, tc->key_len);
+            cyclone_error = cipherAlgo->init(&cipherContext, tc->key, tc->key_len / 8);
             if (cyclone_error)
             {
                 printf("Error initializing CipherAlgo.\n");
@@ -932,6 +927,48 @@ end:
 
 
 // Helper functions
+void dumpCbcTestVector(ACVP_SYM_CIPHER_TC *tc) {
+    if(tc->key) {
+        printf("KEY: ");
+        for (int i = 0; i < tc->key_len; i++ )
+        {
+            printf("%02X ", tc->key[i]);
+        }
+        printf("\n");
+        printf("KEY LEN: %d\n",tc->key_len);
+    }
+    
+    if(tc->iv_len) {
+        printf("IV: ");
+        for (int i = 0; i < tc->iv_len; i++ )
+        {
+            printf("%02X ", tc->iv[i]);
+        }
+        printf("\n");
+        printf("IV LEN: %d\n",tc->iv_len);
+    }
+
+    if(tc->ct_len) {
+        printf("CT: ");
+        for (int i = 0; i < tc->ct_len; i++ )
+        {
+            printf("%02X ", tc->ct[i]);
+        }
+        printf("\n");
+        printf("CT LEN: %d\n",tc->ct_len);
+    }
+    if(tc->pt_len) {
+        printf("PT: ");
+        for (int i = 0; i < tc->pt_len; i++ )   
+        {
+            printf("%02X ", tc->pt[i]);
+        }
+        printf("\n");
+        printf("PT LEN: %d\n",tc->pt_len);
+    }
+
+}
+
 void dumpGcmTestVector(ACVP_SYM_CIPHER_TC *tc) {
     if(tc->iv_len) {
         printf("IV: ");
