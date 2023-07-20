@@ -53,3 +53,4 @@ init_env.sh
 doc/html
 testSession_*.json
 test_vectors/*
+app/*.json
